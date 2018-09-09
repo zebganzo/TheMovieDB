@@ -13,6 +13,7 @@
 		DBF9EBDC21453AD900B1F710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF9EBDB21453AD900B1F710 /* Assets.xcassets */; };
 		DBF9EBDF21453AD900B1F710 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF9EBDD21453AD900B1F710 /* LaunchScreen.storyboard */; };
 		DBF9EBEA21453AD900B1F710 /* TheMovieDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBE921453AD900B1F710 /* TheMovieDBTests.swift */; };
+		DBF9EBF621453C1600B1F710 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBF521453C1600B1F710 /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		DBF9EBE521453AD900B1F710 /* TheMovieDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMovieDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF9EBE921453AD900B1F710 /* TheMovieDBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMovieDBTests.swift; sourceTree = "<group>"; };
 		DBF9EBEB21453AD900B1F710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBF9EBF521453C1600B1F710 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		DBF9EBD321453AD600B1F710 /* TheMovieDB */ = {
 			isa = PBXGroup;
 			children = (
+				DBF9EBF421453BEA00B1F710 /* DataClient */,
 				DBF9EBD421453AD600B1F710 /* AppDelegate.swift */,
 				DBF9EBD621453AD600B1F710 /* ViewController.swift */,
 				DBF9EBD821453AD600B1F710 /* Main.storyboard */,
@@ -94,6 +97,14 @@
 				DBF9EBEB21453AD900B1F710 /* Info.plist */,
 			);
 			path = TheMovieDBTests;
+			sourceTree = "<group>";
+		};
+		DBF9EBF421453BEA00B1F710 /* DataClient */ = {
+			isa = PBXGroup;
+			children = (
+				DBF9EBF521453C1600B1F710 /* Result.swift */,
+			);
+			path = DataClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBF9EBF621453C1600B1F710 /* Result.swift in Sources */,
 				DBF9EBD721453AD600B1F710 /* ViewController.swift in Sources */,
 				DBF9EBD521453AD600B1F710 /* AppDelegate.swift in Sources */,
 			);
