@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum HTTPMethod: String {
+    case get = "GET"
+}
+
 enum HTTPError: Error {
     case badEndpoint(Endpoint)
     case badRequest(Error)
@@ -16,31 +20,15 @@ enum HTTPError: Error {
 
 typealias completionHandler = (Result<Data, HTTPError>) -> Void
 
-protocol HTTPLayerProtocol {
+protocol HttpLayerProtocol {
     func request(at endpoint: Endpoint, completion: @escaping completionHandler)
+    func buildUrl(endpoint: Endpoint) -> URL?
 }
 
-enum HTTPMethod: String {
-    case get = "GET"
-}
-
-final class HTTPLayer: HTTPLayerProtocol {
-
-    private let baseURL: URL
-    private let version: Int
-    private let apiKey: String
-
-    init?(apiKey: String, baseURL: String, version: Int) {
-        guard let baseURL = URL(string: baseURL) else { return nil }
-        self.apiKey = apiKey
-        self.baseURL = baseURL
-        self.version = version
-    }
+extension HttpLayerProtocol {
 
     func request(at endpoint: Endpoint, completion: @escaping completionHandler) {
-
-        guard let url = self.url(with: self.baseURL, version: self.version, endpoint: endpoint) else {
-
+        guard let url = self.buildUrl(endpoint: endpoint) else {
             assertionFailure("Unable to create an URL")
             completion(.failure(.badEndpoint(endpoint)))
             return
@@ -63,11 +51,46 @@ final class HTTPLayer: HTTPLayerProtocol {
         }
         task.resume()
     }
+}
 
-    func url(with baseURL: URL, version: Int, endpoint: Endpoint) -> URL? {
+final class ImageHttpLayer: HttpLayerProtocol {
+
+    private let baseURL: URL
+
+    init?(baseURL: String) {
+        guard let baseURL = URL(string: baseURL) else { return nil }
+        self.baseURL = baseURL
+    }
+
+    func buildUrl(endpoint: Endpoint) -> URL? {
+        var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
+        urlComponents?.path = endpoint.path
+        urlComponents?.query = endpoint.query
+        return urlComponents?.url
+    }
+}
+
+final class AuthenticatedHttpLayer: HttpLayerProtocol {
+
+    private let baseURL: URL
+    private let version: Int
+    private let apiKey: String
+
+    init?(apiKey: String, baseURL: String, version: Int) {
+        guard let baseURL = URL(string: baseURL) else { return nil }
+        self.apiKey = apiKey
+        self.baseURL = baseURL
+        self.version = version
+    }
+
+    private func authenticate(query: String?) -> String {
+        return (query ?? "") + "&api_key=\(self.apiKey)"
+    }
+
+    func buildUrl(endpoint: Endpoint) -> URL? {
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
         urlComponents?.path = "/" + String(version) + endpoint.path
-        urlComponents?.query = (endpoint.query ?? "") + "&api_key=\(self.apiKey)"
+        urlComponents?.query = self.authenticate(query: endpoint.query)
         return urlComponents?.url
     }
 }

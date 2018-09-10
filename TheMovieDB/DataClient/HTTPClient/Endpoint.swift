@@ -6,9 +6,17 @@
 //  Copyright © 2018 Sebastiano Catellani. All rights reserved.
 //
 
+enum Poster​Size: String {
+    case ​w92
+    case w185
+    case ​w500
+    case w780
+}
+
 enum Endpoint {
 
     case search(String, Int)
+    case image(String, Poster​Size)
 
     var method: HTTPMethod {
         return .get
@@ -18,6 +26,8 @@ enum Endpoint {
         switch self {
         case .search:
             return "/search/movie"
+        case .image(let name, let size):
+            return "/t/p/\(size.rawValue)/\(name)"
         }
     }
 
@@ -25,6 +35,8 @@ enum Endpoint {
         switch self {
         case .search(let query, let page):
             return "query=\(query)&page=\(page)"
+        case .image:
+            return nil
         }
     }
 }
