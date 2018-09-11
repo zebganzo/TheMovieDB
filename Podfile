@@ -10,7 +10,7 @@ target 'TheMovieDB' do
 
     target 'TheMovieDBTests' do
         inherit! :search_paths
-        pod 'Quick', '~> 1.2.0'
-        pod 'Nimble', '~> 7.0.1'
+        pod 'Quick'
+        pod 'Nimble'
     end
 end

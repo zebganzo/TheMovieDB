@@ -13,21 +13,22 @@ enum HTTPMethod: String {
 }
 
 enum HTTPError: Error {
+    case badBaseUrl(String)
     case badEndpoint(Endpoint)
     case badRequest(Error)
     case unknownError
 }
 
-typealias completionHandler = (Result<Data, HTTPError>) -> Void
+typealias CompletionHandler = (Result<Data, HTTPError>) -> Void
 
 protocol HttpLayerProtocol {
-    func request(at endpoint: Endpoint, completion: @escaping completionHandler)
+    func request(at endpoint: Endpoint, completion: @escaping CompletionHandler)
     func buildUrl(endpoint: Endpoint) -> URL?
 }
 
 extension HttpLayerProtocol {
 
-    func request(at endpoint: Endpoint, completion: @escaping completionHandler) {
+    func request(at endpoint: Endpoint, completion: @escaping CompletionHandler) {
         guard let url = self.buildUrl(endpoint: endpoint) else {
             assertionFailure("Unable to create an URL")
             completion(.failure(.badEndpoint(endpoint)))
@@ -57,8 +58,8 @@ final class ImageHttpLayer: HttpLayerProtocol {
 
     private let baseURL: URL
 
-    init?(baseURL: String) {
-        guard let baseURL = URL(string: baseURL) else { return nil }
+    init(baseUrl stringUrl: String) throws {
+        guard let baseURL = URL(string: stringUrl) else { throw HTTPError.badBaseUrl(stringUrl) }
         self.baseURL = baseURL
     }
 
@@ -76,8 +77,8 @@ final class AuthenticatedHttpLayer: HttpLayerProtocol {
     private let version: Int
     private let apiKey: String
 
-    init?(apiKey: String, baseURL: String, version: Int) {
-        guard let baseURL = URL(string: baseURL) else { return nil }
+    init(apiKey: String, baseUrl stringUrl: String, version: Int) throws {
+        guard let baseURL = URL(string: stringUrl) else { throw HTTPError.badBaseUrl(stringUrl) }
         self.apiKey = apiKey
         self.baseURL = baseURL
         self.version = version

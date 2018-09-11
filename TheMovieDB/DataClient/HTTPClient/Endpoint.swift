@@ -7,10 +7,10 @@
 //
 
 enum Poster​Size: String {
-    case ​w92
-    case w185
-    case ​w500
-    case w780
+    case ​w92 = "w92"
+    case w185 = "w185"
+    case ​w500 = "​w500"
+    case w780 = "w780"
 }
 
 enum Endpoint {
