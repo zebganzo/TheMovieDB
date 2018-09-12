@@ -12,7 +12,21 @@
 		DB0A277D2146F7C20085B67B /* HttpLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A277C2146F7C20085B67B /* HttpLayerTests.swift */; };
 		DB0A277E2146FBB40085B67B /* HTTPLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBF821453C7500B1F710 /* HTTPLayer.swift */; };
 		DB0A277F2146FBB60085B67B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBFA2145596B00B1F710 /* Endpoint.swift */; };
+		DB6AB5A421499E49005FA4A5 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A321499E49005FA4A5 /* Movie.swift */; };
+		DB6AB5A521499E60005FA4A5 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A321499E49005FA4A5 /* Movie.swift */; };
+		DB6AB5A721499E97005FA4A5 /* Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A621499E97005FA4A5 /* Unmarshalling.swift */; };
+		DB6AB5A821499E97005FA4A5 /* Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A621499E97005FA4A5 /* Unmarshalling.swift */; };
+		DB6AB5AA21499EDA005FA4A5 /* Movie+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A921499EDA005FA4A5 /* Movie+Unmarshalling.swift */; };
+		DB6AB5AB21499EDA005FA4A5 /* Movie+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A921499EDA005FA4A5 /* Movie+Unmarshalling.swift */; };
+		DB6AB5AD21499EFE005FA4A5 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5AC21499EFE005FA4A5 /* SearchResult.swift */; };
+		DB6AB5AE21499EFE005FA4A5 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5AC21499EFE005FA4A5 /* SearchResult.swift */; };
+		DB6AB5B021499F1A005FA4A5 /* SearchResult+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5AF21499F1A005FA4A5 /* SearchResult+Unmarshalling.swift */; };
+		DB6AB5B121499F1A005FA4A5 /* SearchResult+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5AF21499F1A005FA4A5 /* SearchResult+Unmarshalling.swift */; };
+		DB6AB5B321499F82005FA4A5 /* Array+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5B221499F82005FA4A5 /* Array+Unmarshalling.swift */; };
+		DB6AB5B421499F82005FA4A5 /* Array+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5B221499F82005FA4A5 /* Array+Unmarshalling.swift */; };
 		DBA3DF59214702580084F7F5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBF521453C1600B1F710 /* Result.swift */; };
+		DBBCC38521483B8A00690094 /* BatmanSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = DBBCC38421483B8A00690094 /* BatmanSearch.json */; };
+		DBBCC38721484A2700690094 /* SearchParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBCC38621484A2700690094 /* SearchParserTests.swift */; };
 		DBF9EBD521453AD600B1F710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBD421453AD600B1F710 /* AppDelegate.swift */; };
 		DBF9EBD721453AD600B1F710 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBD621453AD600B1F710 /* ViewController.swift */; };
 		DBF9EBDA21453AD600B1F710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF9EBD821453AD600B1F710 /* Main.storyboard */; };
@@ -40,6 +54,14 @@
 		AF4A19A5D7A1987299C4F656 /* Pods-TheMovieDBTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieDBTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheMovieDBTests/Pods-TheMovieDBTests.release.xcconfig"; sourceTree = "<group>"; };
 		C77B53B4E8A30C74B18D655B /* Pods_TheMovieDBTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheMovieDBTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0A277C2146F7C20085B67B /* HttpLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpLayerTests.swift; sourceTree = "<group>"; };
+		DB6AB5A321499E49005FA4A5 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		DB6AB5A621499E97005FA4A5 /* Unmarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unmarshalling.swift; sourceTree = "<group>"; };
+		DB6AB5A921499EDA005FA4A5 /* Movie+Unmarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Unmarshalling.swift"; sourceTree = "<group>"; };
+		DB6AB5AC21499EFE005FA4A5 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		DB6AB5AF21499F1A005FA4A5 /* SearchResult+Unmarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResult+Unmarshalling.swift"; sourceTree = "<group>"; };
+		DB6AB5B221499F82005FA4A5 /* Array+Unmarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Unmarshalling.swift"; sourceTree = "<group>"; };
+		DBBCC38421483B8A00690094 /* BatmanSearch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BatmanSearch.json; sourceTree = "<group>"; };
+		DBBCC38621484A2700690094 /* SearchParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParserTests.swift; sourceTree = "<group>"; };
 		DBF9EBD121453AD600B1F710 /* TheMovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF9EBD421453AD600B1F710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBF9EBD621453AD600B1F710 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +117,35 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DB6AB5A121499DD2005FA4A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DB6AB5A321499E49005FA4A5 /* Movie.swift */,
+				DB6AB5AC21499EFE005FA4A5 /* SearchResult.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DB6AB5A221499E30005FA4A5 /* DecodeHelper */ = {
+			isa = PBXGroup;
+			children = (
+				DB6AB5A621499E97005FA4A5 /* Unmarshalling.swift */,
+				DB6AB5A921499EDA005FA4A5 /* Movie+Unmarshalling.swift */,
+				DB6AB5AF21499F1A005FA4A5 /* SearchResult+Unmarshalling.swift */,
+				DB6AB5B221499F82005FA4A5 /* Array+Unmarshalling.swift */,
+			);
+			path = DecodeHelper;
+			sourceTree = "<group>";
+		};
+		DBBCC38821484A3400690094 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				DBBCC38421483B8A00690094 /* BatmanSearch.json */,
+				DBF9EBEB21453AD900B1F710 /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		DBF9EBC821453AD600B1F710 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +169,7 @@
 		DBF9EBD321453AD600B1F710 /* TheMovieDB */ = {
 			isa = PBXGroup;
 			children = (
+				DB6AB5A121499DD2005FA4A5 /* Model */,
 				DBF9EBF421453BEA00B1F710 /* DataClient */,
 				DBF9EBD421453AD600B1F710 /* AppDelegate.swift */,
 				DBF9EBD621453AD600B1F710 /* ViewController.swift */,
@@ -132,8 +184,9 @@
 		DBF9EBE821453AD900B1F710 /* TheMovieDBTests */ = {
 			isa = PBXGroup;
 			children = (
-				DBF9EBEB21453AD900B1F710 /* Info.plist */,
 				DB0A277C2146F7C20085B67B /* HttpLayerTests.swift */,
+				DBBCC38621484A2700690094 /* SearchParserTests.swift */,
+				DBBCC38821484A3400690094 /* Support */,
 			);
 			path = TheMovieDBTests;
 			sourceTree = "<group>";
@@ -141,6 +194,7 @@
 		DBF9EBF421453BEA00B1F710 /* DataClient */ = {
 			isa = PBXGroup;
 			children = (
+				DB6AB5A221499E30005FA4A5 /* DecodeHelper */,
 				DBF9EBF721453C6200B1F710 /* HTTPClient */,
 				DBF9EBF521453C1600B1F710 /* Result.swift */,
 			);
@@ -253,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBBCC38521483B8A00690094 /* BatmanSearch.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,8 +422,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB6AB5B321499F82005FA4A5 /* Array+Unmarshalling.swift in Sources */,
+				DB6AB5B021499F1A005FA4A5 /* SearchResult+Unmarshalling.swift in Sources */,
+				DB6AB5AD21499EFE005FA4A5 /* SearchResult.swift in Sources */,
 				DBF9EBF621453C1600B1F710 /* Result.swift in Sources */,
 				DBF9EBD721453AD600B1F710 /* ViewController.swift in Sources */,
+				DB6AB5A721499E97005FA4A5 /* Unmarshalling.swift in Sources */,
+				DB6AB5A421499E49005FA4A5 /* Movie.swift in Sources */,
+				DB6AB5AA21499EDA005FA4A5 /* Movie+Unmarshalling.swift in Sources */,
 				DBF9EBD521453AD600B1F710 /* AppDelegate.swift in Sources */,
 				DBF9EBF921453C7500B1F710 /* HTTPLayer.swift in Sources */,
 				DBF9EBFB2145596B00B1F710 /* Endpoint.swift in Sources */,
@@ -379,8 +440,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB6AB5B421499F82005FA4A5 /* Array+Unmarshalling.swift in Sources */,
+				DB6AB5B121499F1A005FA4A5 /* SearchResult+Unmarshalling.swift in Sources */,
+				DB6AB5AE21499EFE005FA4A5 /* SearchResult.swift in Sources */,
 				DB0A277D2146F7C20085B67B /* HttpLayerTests.swift in Sources */,
 				DB0A277F2146FBB60085B67B /* Endpoint.swift in Sources */,
+				DB6AB5A821499E97005FA4A5 /* Unmarshalling.swift in Sources */,
+				DB6AB5A521499E60005FA4A5 /* Movie.swift in Sources */,
+				DB6AB5AB21499EDA005FA4A5 /* Movie+Unmarshalling.swift in Sources */,
+				DBBCC38721484A2700690094 /* SearchParserTests.swift in Sources */,
 				DBA3DF59214702580084F7F5 /* Result.swift in Sources */,
 				DB0A277E2146FBB40085B67B /* HTTPLayer.swift in Sources */,
 			);
@@ -580,7 +648,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2MQ4ZF3QC;
-				INFOPLIST_FILE = TheMovieDBTests/Info.plist;
+				INFOPLIST_FILE = TheMovieDBTests/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -602,7 +670,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2MQ4ZF3QC;
-				INFOPLIST_FILE = TheMovieDBTests/Info.plist;
+				INFOPLIST_FILE = TheMovieDBTests/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
