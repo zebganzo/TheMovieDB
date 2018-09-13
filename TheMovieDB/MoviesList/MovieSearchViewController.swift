@@ -8,6 +8,8 @@
 
 import UIKit
 import ReactiveSwift
+import ReactiveCocoa
+import Result
 
 class MovieSearchViewController: UIViewController {
 
@@ -17,6 +19,22 @@ class MovieSearchViewController: UIViewController {
     init(viewModel: MovieSearchViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+    }
+
+    override func viewDidLoad() {
+        self.viewModel.searchAction <~ self.movieSearchView.searchButton.reactive.controlEvents(.touchUpInside)
+            .map { [unowned self] _ -> String? in self.movieSearchView.searchTextField.text }
+            .skipNil()
+            .filter { !$0.isEmpty }
+
+        self.viewModel.searchAction.events.observeResult { result in
+            switch result {
+            case .success:
+                print("Completed!")
+            case .failure(let error):
+                print("Error \(error.localizedDescription)!")
+            }
+        }
     }
 
     @available(*, unavailable)
