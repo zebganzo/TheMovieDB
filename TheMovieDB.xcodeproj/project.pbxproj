@@ -160,14 +160,14 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		DB6AB5BA214A5718005FA4A5 /* MoviesList */ = {
+		DB6AB5BA214A5718005FA4A5 /* MoviesSearch */ = {
 			isa = PBXGroup;
 			children = (
 				DB6AB5BE214A5765005FA4A5 /* MovieSearchView.swift */,
 				DB6AB5BB214A5755005FA4A5 /* MovieSearchViewController.swift */,
 				DB6AB5C1214A5773005FA4A5 /* MovieSearchViewModel.swift */,
 			);
-			path = MoviesList;
+			path = MoviesSearch;
 			sourceTree = "<group>";
 		};
 		DBBCC38821484A3400690094 /* Support */ = {
@@ -206,7 +206,7 @@
 				DBF9EBDB21453AD900B1F710 /* Assets.xcassets */,
 				DBF9EBF421453BEA00B1F710 /* DataClient */,
 				DB6AB5A121499DD2005FA4A5 /* Model */,
-				DB6AB5BA214A5718005FA4A5 /* MoviesList */,
+				DB6AB5BA214A5718005FA4A5 /* MoviesSearch */,
 				DB6AB5B9214A55AE005FA4A5 /* Support */,
 			);
 			path = TheMovieDB;
@@ -646,7 +646,10 @@
 				DEVELOPMENT_TEAM = B2MQ4ZF3QC;
 				INFOPLIST_FILE = TheMovieDB/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.megadevs.TheMovieDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -663,7 +666,10 @@
 				DEVELOPMENT_TEAM = B2MQ4ZF3QC;
 				INFOPLIST_FILE = TheMovieDB/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.megadevs.TheMovieDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -680,7 +686,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2MQ4ZF3QC;
 				INFOPLIST_FILE = TheMovieDBTests/Support/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.megadevs.TheMovieDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -698,7 +708,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2MQ4ZF3QC;
 				INFOPLIST_FILE = TheMovieDBTests/Support/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.megadevs.TheMovieDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
