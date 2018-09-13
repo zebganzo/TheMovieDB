@@ -43,6 +43,6 @@ class MovieSearchViewController: UIViewController {
     }
 
     override func loadView() {
-        self.view = movieSearchView
+        self.view = self.movieSearchView
     }
 }
