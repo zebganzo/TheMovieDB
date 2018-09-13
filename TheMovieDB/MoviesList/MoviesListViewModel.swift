@@ -17,4 +17,22 @@ class MoviesListViewModel {
         self.totalPages = searchResult.totalPages
         self.movies = self.movies + searchResult.results
     }
+
+    public var numberOfMovies: Int {
+        return self.movies.count
+    }
+
+    public func infoForMoviw(at index: Int) -> MovieBasicInfoProtocol {
+        return self.movies[index]
+    }
+}
+
+protocol MovieBasicInfoProtocol {
+    var title: String { get }
+}
+
+extension Movie: MovieBasicInfoProtocol {
+    var title: String {
+        return self.​name
+    }
 }
