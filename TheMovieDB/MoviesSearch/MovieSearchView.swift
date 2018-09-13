@@ -30,7 +30,7 @@ final class MovieSearchView: UIView {
 
         self.searchTextField.backgroundColor = UIColor.white
         self.searchTextField.placeholder = "Search a movie..."
-        self.searchTextField.snp.makeConstraints { (make) -> Void in
+        self.searchTextField.snp.makeConstraints { make -> Void in
             make.width.equalTo(self).multipliedBy(0.8)
             make.height.equalTo(50)
             make.centerX.equalTo(self)
@@ -39,7 +39,7 @@ final class MovieSearchView: UIView {
 
         self.searchButton.backgroundColor = UIColor.lightGray
         self.searchButton.setTitle("Search", for: .normal)
-        self.searchButton.snp.makeConstraints { (make) -> Void in
+        self.searchButton.snp.makeConstraints { make -> Void in
             make.width.height.centerX.equalTo(self.searchTextField)
             make.top.equalTo(self.searchTextField.snp.bottom).offset(16)
         }
