@@ -29,7 +29,7 @@
 		DB6AB5BC214A5755005FA4A5 /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5BB214A5755005FA4A5 /* MovieSearchViewController.swift */; };
 		DB6AB5BF214A5765005FA4A5 /* MovieSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5BE214A5765005FA4A5 /* MovieSearchView.swift */; };
 		DB6AB5C2214A5773005FA4A5 /* MovieSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5C1214A5773005FA4A5 /* MovieSearchViewModel.swift */; };
-		DB6AB5C3214A5773005FA4A5 /* MovieSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5C1214A5773005FA4A5 /* MovieSearchViewModel.swift */; };
+		DB6AB5C4214A6184005FA4A5 /* MovieSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5C1214A5773005FA4A5 /* MovieSearchViewModel.swift */; };
 		DBA3DF59214702580084F7F5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBF521453C1600B1F710 /* Result.swift */; };
 		DBBCC38521483B8A00690094 /* BatmanSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = DBBCC38421483B8A00690094 /* BatmanSearch.json */; };
 		DBBCC38721484A2700690094 /* SearchParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBCC38621484A2700690094 /* SearchParserTests.swift */; };
@@ -484,8 +484,8 @@
 				DB6AB5B421499F82005FA4A5 /* Array+Unmarshalling.swift in Sources */,
 				DB6AB5B121499F1A005FA4A5 /* SearchResult+Unmarshalling.swift in Sources */,
 				DB6AB5AE21499EFE005FA4A5 /* SearchResult.swift in Sources */,
+				DB6AB5C4214A6184005FA4A5 /* MovieSearchViewModel.swift in Sources */,
 				DB0A277D2146F7C20085B67B /* HttpLayerTests.swift in Sources */,
-				DB6AB5C3214A5773005FA4A5 /* MovieSearchViewModel.swift in Sources */,
 				DB0A277F2146FBB60085B67B /* Endpoint.swift in Sources */,
 				DB6AB5A821499E97005FA4A5 /* Unmarshalling.swift in Sources */,
 				DB6AB5A521499E60005FA4A5 /* Movie.swift in Sources */,
@@ -644,7 +644,10 @@
 				DEVELOPMENT_TEAM = B2MQ4ZF3QC;
 				INFOPLIST_FILE = TheMovieDB/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.megadevs.TheMovieDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -661,7 +664,10 @@
 				DEVELOPMENT_TEAM = B2MQ4ZF3QC;
 				INFOPLIST_FILE = TheMovieDB/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.megadevs.TheMovieDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -678,7 +684,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2MQ4ZF3QC;
 				INFOPLIST_FILE = TheMovieDBTests/Support/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.megadevs.TheMovieDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -696,7 +706,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B2MQ4ZF3QC;
 				INFOPLIST_FILE = TheMovieDBTests/Support/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.megadevs.TheMovieDBTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

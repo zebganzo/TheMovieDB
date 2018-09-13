@@ -6,4 +6,25 @@
 //  Copyright © 2018 Sebastiano Catellani. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import ReactiveSwift
+
+class MovieSearchViewController: UIViewController {
+
+    private let viewModel: MovieSearchViewModel
+    private let movieSearchView = MovieSearchView()
+
+    init(viewModel: MovieSearchViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func loadView() {
+        self.view = movieSearchView
+    }
+}
