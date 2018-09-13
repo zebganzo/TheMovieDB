@@ -13,10 +13,10 @@ import Result
 
 class MovieSearchViewController: UIViewController {
 
-    private let viewModel: MovieSearchViewModel
+    private let viewModel: MovieSearchProtocol
     private let movieSearchView = MovieSearchView()
 
-    init(viewModel: MovieSearchViewModel) {
+    init(viewModel: MovieSearchProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

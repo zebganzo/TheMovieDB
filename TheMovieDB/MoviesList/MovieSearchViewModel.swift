@@ -9,11 +9,15 @@
 import ReactiveSwift
 import Result
 
+protocol MovieSearchProtocol {
+    var searchAction: Action<String, Void, AnyError> { get }
+}
+
 enum SearchError: Error {
     case dataMissing
 }
 
-class MovieSearchViewModel {
+class MovieSearchViewModel: MovieSearchProtocol {
 
     private let searchClient: SearchProtocol
     let searchAction: Action<String, Void, AnyError>
