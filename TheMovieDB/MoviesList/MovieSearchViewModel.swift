@@ -16,22 +16,21 @@ enum SearchError: Error {
 class MovieSearchViewModel {
 
     private let searchClient: SearchProtocol
+    let searchAction: Action<String, Void, AnyError>
 
     init(searchClient: SearchProtocol) {
         self.searchClient = searchClient
-    }
 
-    func search(movie name: String) -> SignalProducer<Void, AnyError> {
 
-        return SignalProducer<Void, AnyError> { [weak self] observer, _ in
-            guard let `self` = self else { return }
-
-            self.searchClient.search(movie: name, page: 1) { result in
-                switch result {
-                case .success:
-                    observer.sendCompleted()
-                case .failure(let error):
-                    observer.send(error: AnyError(error))
+        self.searchAction = Action { (name: String) -> SignalProducer<Void, AnyError> in
+            return SignalProducer<Void, AnyError> { observer, _ in
+                searchClient.search(movie: name, page: 1) { result in
+                    switch result {
+                    case .success:
+                        observer.sendCompleted()
+                    case .failure(let error):
+                        observer.send(error: AnyError(error))
+                    }
                 }
             }
         }
