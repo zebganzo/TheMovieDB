@@ -37,7 +37,11 @@ extension HttpLayerProtocol {
 
         print("[Networking] Request: \(url.absoluteString)")
 
-        let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+
+            // https://www.themoviedb.org/documentation/api/status-codes
+            let statuCode = response?.statusCode()
+
             if let data = data {
                 completion(.success(data))
                 return
@@ -51,6 +55,15 @@ extension HttpLayerProtocol {
             completion(.failure(.badRequest(error)))
         }
         task.resume()
+    }
+}
+
+extension URLResponse {
+    func statusCode() -> Int? {
+        if let httpResponse = self as? HTTPURLResponse {
+            return httpResponse.statusCode
+        }
+        return nil
     }
 }
 
