@@ -10,40 +10,31 @@ import Foundation
 import ReactiveSwift
 import Result
 
-protocol StoreProtocol {
-    var suggestionsSignal: Signal<[Suggestion], NoError> { get }
+protocol SuggestionsProtocol {
+    var suggestions: MutableProperty<[Suggestion]> { get }
     func save(suggestion: Suggestion)
 }
 
 typealias ExtremelyAdvancedStorageSystem = UserDefaults
 typealias Suggestion = String
 
-final class StoreClient: StoreProtocol {
+final class StoreClient: SuggestionsProtocol {
 
     private let store: ExtremelyAdvancedStorageSystem
     private static let storageKey = "Suggestions"
 
-    private var suggestions: MutableProperty<[Suggestion]>
-
-    let suggestionsSignal: Signal<[Suggestion], NoError>
-    private let suggestionsSink: Signal<[Suggestion], NoError>.Observer
+    var suggestions = MutableProperty<[Suggestion]>([])
 
     init(store: ExtremelyAdvancedStorageSystem) {
         self.store = store
-        if let suggestions = self.store.object(forKey: StoreClient.storageKey) as? [Suggestion] {
-            self.suggestions = MutableProperty(suggestions)
-        } else {
-            self.suggestions = MutableProperty([])
-        }
 
-        (self.suggestionsSignal, self.suggestionsSink) = Signal<[Suggestion], NoError>.pipe()
         self.suggestions.signal.observeValues { [unowned self] suggestions in
-            self.suggestionsSink.send(value: suggestions)
+            self.store.set(suggestions, forKey: StoreClient.storageKey)
         }
-    }
 
-    deinit {
-        self.store.set(suggestions, forKey: StoreClient.storageKey)
+        if let suggestions = self.store.object(forKey: StoreClient.storageKey) as? [Suggestion] {
+            self.suggestions.value = suggestions
+        }
     }
 
     func save(suggestion: Suggestion) {

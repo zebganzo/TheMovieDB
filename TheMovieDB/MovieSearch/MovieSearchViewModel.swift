@@ -11,6 +11,7 @@ import Result
 
 protocol MovieSearchProtocol {
     var searchAction: Action<String, SearchResult<Movie>, AnyError> { get }
+    var suggestions: MutableProperty<[Suggestion]> { get }
 }
 
 enum SearchError: Error {
@@ -22,8 +23,11 @@ class MovieSearchViewModel: MovieSearchProtocol {
     private let searchClient: SearchProtocol
     let searchAction: Action<String, SearchResult<Movie>, AnyError>
 
-    init(searchClient: SearchProtocol) {
+    let suggestions: MutableProperty<[Suggestion]>
+
+    init(searchClient: SearchProtocol, suggestionsProtocol: SuggestionsProtocol) {
         self.searchClient = searchClient
+        self.suggestions = suggestionsProtocol.suggestions
 
         self.searchAction = Action { (name: String) -> SignalProducer<SearchResult<Movie>, AnyError> in
             return SignalProducer<SearchResult<Movie>, AnyError> { observer, _ in
@@ -36,7 +40,9 @@ class MovieSearchViewModel: MovieSearchProtocol {
                         observer.send(error: AnyError(error))
                     }
                 }
-            }
+                }.on(value: { _ in
+                    suggestionsProtocol.save(suggestion: name)
+                })
         }
     }
 }

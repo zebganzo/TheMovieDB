@@ -36,6 +36,7 @@
 		DB6AB5E4214DA57C005FA4A5 /* DecoderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5E3214DA57C005FA4A5 /* DecoderProtocol.swift */; };
 		DB6AB5E7214DA8D4005FA4A5 /* StoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5E6214DA8D4005FA4A5 /* StoreClient.swift */; };
 		DB6AB5E8214DACAA005FA4A5 /* DecoderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5E3214DA57C005FA4A5 /* DecoderProtocol.swift */; };
+		DB6AB5E9214DB3B5005FA4A5 /* StoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5E6214DA8D4005FA4A5 /* StoreClient.swift */; };
 		DBA3DF59214702580084F7F5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBF521453C1600B1F710 /* Result.swift */; };
 		DBBCC38521483B8A00690094 /* BatmanSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = DBBCC38421483B8A00690094 /* BatmanSearch.json */; };
 		DBBCC38721484A2700690094 /* SearchParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBCC38621484A2700690094 /* SearchParserTests.swift */; };
@@ -565,6 +566,7 @@
 				DB6AB5D6214B1271005FA4A5 /* Router.swift in Sources */,
 				DB6AB5A521499E60005FA4A5 /* Movie.swift in Sources */,
 				DBBCC38721484A2700690094 /* SearchParserTests.swift in Sources */,
+				DB6AB5E9214DB3B5005FA4A5 /* StoreClient.swift in Sources */,
 				DBA3DF59214702580084F7F5 /* Result.swift in Sources */,
 				DB6AB5E8214DACAA005FA4A5 /* DecoderProtocol.swift in Sources */,
 				DB6AB5CC214AA5A6005FA4A5 /* MoviesListViewModel.swift in Sources */,

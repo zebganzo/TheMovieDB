@@ -16,6 +16,12 @@ class MovieSearchViewController: UIViewController {
     private let viewModel: MovieSearchProtocol
     private let movieSearchView: MovieSearchView
 
+    private var suggestions: [Suggestion] = [] {
+        didSet {
+            self.movieSearchView.tableView.reloadData()
+        }
+    }
+
     init(viewModel: MovieSearchProtocol) {
         self.viewModel = viewModel
         self.movieSearchView = MovieSearchView(loadingSignalProducer: self.viewModel.searchAction.isExecuting.producer)
@@ -24,6 +30,12 @@ class MovieSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         self.viewModel.searchAction <~ self.movieSearchView.headerView.searchTextSignal
+        self.viewModel.suggestions
+            .producer
+            .observe(on: UIScheduler())
+            .startWithValues { [weak self] suggestions in
+                self?.suggestions = suggestions
+        }
     }
 
     @available(*, unavailable)
@@ -41,14 +53,12 @@ class MovieSearchViewController: UIViewController {
 
 extension MovieSearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.suggestions.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: SuggestionViewCell.defaultCellIdentifier, for: indexPath)
-        cell.textLabel?.text = "Suggestion"
-
+        cell.textLabel?.text = self.suggestions[indexPath.row]
         return cell
     }
 }
