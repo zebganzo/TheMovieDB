@@ -22,8 +22,13 @@ class SearchParserTests: QuickSpec {
                     let url = testBundle.url(forResource: "BatmanSearch", withExtension: "json")
                     let jsonData = try! Data(contentsOf: url!)
 
-                    let json = try! JSONSerialization.jsonObject(with: jsonData) as! JSON
-                    let searchResult = try! SearchResult<Movie>(json: json)
+                    var searchResult: SearchResult<Movie>!
+
+                    do {
+                        searchResult = try JSONDecoder().decode(SearchResult<Movie>.self, from: jsonData)
+                    } catch (let error) {
+                        assertionFailure(error.localizedDescription)
+                    }
 
                     expect(searchResult.page) == 1
                     expect(searchResult.totalResults) == 103

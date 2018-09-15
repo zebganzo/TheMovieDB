@@ -14,16 +14,8 @@
 		DB0A277F2146FBB60085B67B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBFA2145596B00B1F710 /* Endpoint.swift */; };
 		DB6AB5A421499E49005FA4A5 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A321499E49005FA4A5 /* Movie.swift */; };
 		DB6AB5A521499E60005FA4A5 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A321499E49005FA4A5 /* Movie.swift */; };
-		DB6AB5A721499E97005FA4A5 /* Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A621499E97005FA4A5 /* Unmarshalling.swift */; };
-		DB6AB5A821499E97005FA4A5 /* Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A621499E97005FA4A5 /* Unmarshalling.swift */; };
-		DB6AB5AA21499EDA005FA4A5 /* Movie+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A921499EDA005FA4A5 /* Movie+Unmarshalling.swift */; };
-		DB6AB5AB21499EDA005FA4A5 /* Movie+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A921499EDA005FA4A5 /* Movie+Unmarshalling.swift */; };
 		DB6AB5AD21499EFE005FA4A5 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5AC21499EFE005FA4A5 /* SearchResult.swift */; };
 		DB6AB5AE21499EFE005FA4A5 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5AC21499EFE005FA4A5 /* SearchResult.swift */; };
-		DB6AB5B021499F1A005FA4A5 /* SearchResult+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5AF21499F1A005FA4A5 /* SearchResult+Unmarshalling.swift */; };
-		DB6AB5B121499F1A005FA4A5 /* SearchResult+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5AF21499F1A005FA4A5 /* SearchResult+Unmarshalling.swift */; };
-		DB6AB5B321499F82005FA4A5 /* Array+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5B221499F82005FA4A5 /* Array+Unmarshalling.swift */; };
-		DB6AB5B421499F82005FA4A5 /* Array+Unmarshalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5B221499F82005FA4A5 /* Array+Unmarshalling.swift */; };
 		DB6AB5B72149A56B005FA4A5 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5B62149A56B005FA4A5 /* APIClient.swift */; };
 		DB6AB5B82149A56B005FA4A5 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5B62149A56B005FA4A5 /* APIClient.swift */; };
 		DB6AB5BC214A5755005FA4A5 /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5BB214A5755005FA4A5 /* MovieSearchViewController.swift */; };
@@ -41,6 +33,7 @@
 		DB6AB5DC214D68FD005FA4A5 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5DB214D68FD005FA4A5 /* UITextField+Extension.swift */; };
 		DB6AB5DF214D694B005FA4A5 /* SuggestionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5DE214D694B005FA4A5 /* SuggestionViewCell.swift */; };
 		DB6AB5E1214D6A07005FA4A5 /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5E0214D6A07005FA4A5 /* SearchHeaderView.swift */; };
+		DB6AB5E4214DA57C005FA4A5 /* DecoderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5E3214DA57C005FA4A5 /* DecoderProtocol.swift */; };
 		DBA3DF59214702580084F7F5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBF521453C1600B1F710 /* Result.swift */; };
 		DBBCC38521483B8A00690094 /* BatmanSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = DBBCC38421483B8A00690094 /* BatmanSearch.json */; };
 		DBBCC38721484A2700690094 /* SearchParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBCC38621484A2700690094 /* SearchParserTests.swift */; };
@@ -70,11 +63,7 @@
 		C77B53B4E8A30C74B18D655B /* Pods_TheMovieDBTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheMovieDBTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0A277C2146F7C20085B67B /* HttpLayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpLayerTests.swift; sourceTree = "<group>"; };
 		DB6AB5A321499E49005FA4A5 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		DB6AB5A621499E97005FA4A5 /* Unmarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unmarshalling.swift; sourceTree = "<group>"; };
-		DB6AB5A921499EDA005FA4A5 /* Movie+Unmarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Unmarshalling.swift"; sourceTree = "<group>"; };
 		DB6AB5AC21499EFE005FA4A5 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
-		DB6AB5AF21499F1A005FA4A5 /* SearchResult+Unmarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResult+Unmarshalling.swift"; sourceTree = "<group>"; };
-		DB6AB5B221499F82005FA4A5 /* Array+Unmarshalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Unmarshalling.swift"; sourceTree = "<group>"; };
 		DB6AB5B62149A56B005FA4A5 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		DB6AB5BB214A5755005FA4A5 /* MovieSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchViewController.swift; sourceTree = "<group>"; };
 		DB6AB5BE214A5765005FA4A5 /* MovieSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchView.swift; sourceTree = "<group>"; };
@@ -88,6 +77,7 @@
 		DB6AB5DB214D68FD005FA4A5 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		DB6AB5DE214D694B005FA4A5 /* SuggestionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewCell.swift; sourceTree = "<group>"; };
 		DB6AB5E0214D6A07005FA4A5 /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
+		DB6AB5E3214DA57C005FA4A5 /* DecoderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderProtocol.swift; sourceTree = "<group>"; };
 		DBBCC38421483B8A00690094 /* BatmanSearch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BatmanSearch.json; sourceTree = "<group>"; };
 		DBBCC38621484A2700690094 /* SearchParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParserTests.swift; sourceTree = "<group>"; };
 		DBF9EBD121453AD600B1F710 /* TheMovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,10 +145,7 @@
 		DB6AB5A221499E30005FA4A5 /* DecodeHelper */ = {
 			isa = PBXGroup;
 			children = (
-				DB6AB5A621499E97005FA4A5 /* Unmarshalling.swift */,
-				DB6AB5A921499EDA005FA4A5 /* Movie+Unmarshalling.swift */,
-				DB6AB5AF21499F1A005FA4A5 /* SearchResult+Unmarshalling.swift */,
-				DB6AB5B221499F82005FA4A5 /* Array+Unmarshalling.swift */,
+				DB6AB5E3214DA57C005FA4A5 /* DecoderProtocol.swift */,
 			);
 			path = DecodeHelper;
 			sourceTree = "<group>";
@@ -221,8 +208,8 @@
 		DB6AB5DD214D693F005FA4A5 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				DB6AB5DE214D694B005FA4A5 /* SuggestionViewCell.swift */,
 				DB6AB5E0214D6A07005FA4A5 /* SearchHeaderView.swift */,
+				DB6AB5DE214D694B005FA4A5 /* SuggestionViewCell.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -531,21 +518,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB6AB5E4214DA57C005FA4A5 /* DecoderProtocol.swift in Sources */,
 				DB6AB5D3214B0DE5005FA4A5 /* Presenter.swift in Sources */,
-				DB6AB5B321499F82005FA4A5 /* Array+Unmarshalling.swift in Sources */,
 				DB6AB5CB214AA58F005FA4A5 /* MoviesListView.swift in Sources */,
 				DB6AB5C2214A5773005FA4A5 /* MovieSearchViewModel.swift in Sources */,
 				DB6AB5C7214AA57D005FA4A5 /* MoviesListViewController.swift in Sources */,
-				DB6AB5B021499F1A005FA4A5 /* SearchResult+Unmarshalling.swift in Sources */,
 				DB6AB5E1214D6A07005FA4A5 /* SearchHeaderView.swift in Sources */,
 				DB6AB5D5214B0E0A005FA4A5 /* Router.swift in Sources */,
 				DB6AB5AD21499EFE005FA4A5 /* SearchResult.swift in Sources */,
 				DBF9EBF621453C1600B1F710 /* Result.swift in Sources */,
 				DB6AB5DC214D68FD005FA4A5 /* UITextField+Extension.swift in Sources */,
 				DB6AB5BF214A5765005FA4A5 /* MovieSearchView.swift in Sources */,
-				DB6AB5A721499E97005FA4A5 /* Unmarshalling.swift in Sources */,
 				DB6AB5A421499E49005FA4A5 /* Movie.swift in Sources */,
-				DB6AB5AA21499EDA005FA4A5 /* Movie+Unmarshalling.swift in Sources */,
 				DB6AB5DA214D68DB005FA4A5 /* UIButton+Extension.swift in Sources */,
 				DBF9EBD521453AD600B1F710 /* AppDelegate.swift in Sources */,
 				DB6AB5DF214D694B005FA4A5 /* SuggestionViewCell.swift in Sources */,
@@ -561,16 +545,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB6AB5B421499F82005FA4A5 /* Array+Unmarshalling.swift in Sources */,
-				DB6AB5B121499F1A005FA4A5 /* SearchResult+Unmarshalling.swift in Sources */,
 				DB6AB5AE21499EFE005FA4A5 /* SearchResult.swift in Sources */,
 				DB6AB5C4214A6184005FA4A5 /* MovieSearchViewModel.swift in Sources */,
 				DB0A277D2146F7C20085B67B /* HttpLayerTests.swift in Sources */,
 				DB0A277F2146FBB60085B67B /* Endpoint.swift in Sources */,
-				DB6AB5A821499E97005FA4A5 /* Unmarshalling.swift in Sources */,
 				DB6AB5D6214B1271005FA4A5 /* Router.swift in Sources */,
 				DB6AB5A521499E60005FA4A5 /* Movie.swift in Sources */,
-				DB6AB5AB21499EDA005FA4A5 /* Movie+Unmarshalling.swift in Sources */,
 				DBBCC38721484A2700690094 /* SearchParserTests.swift in Sources */,
 				DBA3DF59214702580084F7F5 /* Result.swift in Sources */,
 				DB6AB5CC214AA5A6005FA4A5 /* MoviesListViewModel.swift in Sources */,
