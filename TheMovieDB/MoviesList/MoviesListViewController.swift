@@ -9,15 +9,21 @@
 import UIKit
 import ReactiveSwift
 
+protocol UserInteraction { }
+
+enum MoviesListUserInteraction: UserInteraction {
+    case back
+}
+
 class MoviesListViewController: UIViewController {
 
     private let viewModel: MoviesListViewModel
     private let moviesListView = MoviesListView()
-    private static let cellIdentifier = "MoviwInfoCell"
 
     init(viewModel: MoviesListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.title = self.viewModel.pageName
     }
 
     @available(*, unavailable)
@@ -28,8 +34,7 @@ class MoviesListViewController: UIViewController {
     override func loadView() {
         self.view = self.moviesListView
         self.moviesListView.tableView.dataSource = self
-        self.moviesListView.tableView.register(MoviwInfoViewCell.self, forCellReuseIdentifier: type(of: self).cellIdentifier)
-
+        self.moviesListView.tableView.register(MovieInfoViewCell.self, forCellReuseIdentifier: MovieInfoViewCell.defaultCellIdentifier)
     }
 }
 
@@ -38,15 +43,10 @@ extension MoviesListViewController: UITableViewDataSource {
         return self.viewModel.numberOfMovies
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Searched name"
-        // TODO Film name
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let movieBasicInfo = self.viewModel.infoForMoviw(at: indexPath.row)
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: self).cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: MovieInfoViewCell.defaultCellIdentifier, for: indexPath)
 
         cell.textLabel?.text = movieBasicInfo.title
 
@@ -54,7 +54,9 @@ extension MoviesListViewController: UITableViewDataSource {
     }
 }
 
-class MoviwInfoViewCell: UITableViewCell {
+class MovieInfoViewCell: UITableViewCell {
+
+    static let defaultCellIdentifier = "MovieInfoCell"
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)

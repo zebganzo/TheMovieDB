@@ -10,7 +10,7 @@ import ReactiveSwift
 import Result
 
 protocol MovieSearchProtocol {
-    var searchAction: Action<String, Void, AnyError> { get }
+    var searchAction: Action<String, SearchResult<Movie>, AnyError> { get }
 }
 
 enum SearchError: Error {
@@ -20,17 +20,17 @@ enum SearchError: Error {
 class MovieSearchViewModel: MovieSearchProtocol {
 
     private let searchClient: SearchProtocol
-    let searchAction: Action<String, Void, AnyError>
+    let searchAction: Action<String, SearchResult<Movie>, AnyError>
 
     init(searchClient: SearchProtocol) {
         self.searchClient = searchClient
 
-
-        self.searchAction = Action { (name: String) -> SignalProducer<Void, AnyError> in
-            return SignalProducer<Void, AnyError> { observer, _ in
+        self.searchAction = Action { (name: String) -> SignalProducer<SearchResult<Movie>, AnyError> in
+            return SignalProducer<SearchResult<Movie>, AnyError> { observer, _ in
                 searchClient.search(movie: name, page: 1) { result in
                     switch result {
-                    case .success:
+                    case .success(let searchResult):
+                        observer.send(value: searchResult)
                         observer.sendCompleted()
                     case .failure(let error):
                         observer.send(error: AnyError(error))
@@ -38,5 +38,14 @@ class MovieSearchViewModel: MovieSearchProtocol {
                 }
             }
         }
+    }
+}
+
+extension MovieSearchViewModel: RouterViewModelProtocol {
+    var mainActionOutput: MainActionOutput {
+        print("MainActionOutput")
+        return self.searchAction.values.producer
+            .map { $0 as Any }
+            .mapError { AnyError($0) }
     }
 }

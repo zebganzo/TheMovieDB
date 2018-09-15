@@ -34,6 +34,13 @@
 		DB6AB5C9214AA586005FA4A5 /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5C8214AA586005FA4A5 /* MoviesListViewModel.swift */; };
 		DB6AB5CB214AA58F005FA4A5 /* MoviesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5CA214AA58F005FA4A5 /* MoviesListView.swift */; };
 		DB6AB5CC214AA5A6005FA4A5 /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5C8214AA586005FA4A5 /* MoviesListViewModel.swift */; };
+		DB6AB5D3214B0DE5005FA4A5 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5D2214B0DE5005FA4A5 /* Presenter.swift */; };
+		DB6AB5D5214B0E0A005FA4A5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5D4214B0E0A005FA4A5 /* Router.swift */; };
+		DB6AB5D6214B1271005FA4A5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5D4214B0E0A005FA4A5 /* Router.swift */; };
+		DB6AB5DA214D68DB005FA4A5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5D9214D68DB005FA4A5 /* UIButton+Extension.swift */; };
+		DB6AB5DC214D68FD005FA4A5 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5DB214D68FD005FA4A5 /* UITextField+Extension.swift */; };
+		DB6AB5DF214D694B005FA4A5 /* SuggestionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5DE214D694B005FA4A5 /* SuggestionViewCell.swift */; };
+		DB6AB5E1214D6A07005FA4A5 /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5E0214D6A07005FA4A5 /* SearchHeaderView.swift */; };
 		DBA3DF59214702580084F7F5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBF521453C1600B1F710 /* Result.swift */; };
 		DBBCC38521483B8A00690094 /* BatmanSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = DBBCC38421483B8A00690094 /* BatmanSearch.json */; };
 		DBBCC38721484A2700690094 /* SearchParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBCC38621484A2700690094 /* SearchParserTests.swift */; };
@@ -75,6 +82,12 @@
 		DB6AB5C6214AA57D005FA4A5 /* MoviesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewController.swift; sourceTree = "<group>"; };
 		DB6AB5C8214AA586005FA4A5 /* MoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewModel.swift; sourceTree = "<group>"; };
 		DB6AB5CA214AA58F005FA4A5 /* MoviesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListView.swift; sourceTree = "<group>"; };
+		DB6AB5D2214B0DE5005FA4A5 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		DB6AB5D4214B0E0A005FA4A5 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		DB6AB5D9214D68DB005FA4A5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		DB6AB5DB214D68FD005FA4A5 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		DB6AB5DE214D694B005FA4A5 /* SuggestionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewCell.swift; sourceTree = "<group>"; };
+		DB6AB5E0214D6A07005FA4A5 /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		DBBCC38421483B8A00690094 /* BatmanSearch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BatmanSearch.json; sourceTree = "<group>"; };
 		DBBCC38621484A2700690094 /* SearchParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParserTests.swift; sourceTree = "<group>"; };
 		DBF9EBD121453AD600B1F710 /* TheMovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,14 +180,15 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		DB6AB5BA214A5718005FA4A5 /* MoviesSearch */ = {
+		DB6AB5BA214A5718005FA4A5 /* MovieSearch */ = {
 			isa = PBXGroup;
 			children = (
 				DB6AB5BE214A5765005FA4A5 /* MovieSearchView.swift */,
 				DB6AB5BB214A5755005FA4A5 /* MovieSearchViewController.swift */,
 				DB6AB5C1214A5773005FA4A5 /* MovieSearchViewModel.swift */,
+				DB6AB5DD214D693F005FA4A5 /* SubViews */,
 			);
-			path = MoviesSearch;
+			path = MovieSearch;
 			sourceTree = "<group>";
 		};
 		DB6AB5C5214AA564005FA4A5 /* MoviesList */ = {
@@ -185,6 +199,39 @@
 				DB6AB5C8214AA586005FA4A5 /* MoviesListViewModel.swift */,
 			);
 			path = MoviesList;
+			sourceTree = "<group>";
+		};
+		DB6AB5D7214D6899005FA4A5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DB6AB5D8214D68B3005FA4A5 /* UI */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DB6AB5D8214D68B3005FA4A5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DB6AB5D9214D68DB005FA4A5 /* UIButton+Extension.swift */,
+				DB6AB5DB214D68FD005FA4A5 /* UITextField+Extension.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		DB6AB5DD214D693F005FA4A5 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				DB6AB5DE214D694B005FA4A5 /* SuggestionViewCell.swift */,
+				DB6AB5E0214D6A07005FA4A5 /* SearchHeaderView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		DB6AB5E2214D6C4A005FA4A5 /* StorageClient */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = StorageClient;
 			sourceTree = "<group>";
 		};
 		DBBCC38821484A3400690094 /* Support */ = {
@@ -221,10 +268,14 @@
 			children = (
 				DBF9EBD421453AD600B1F710 /* AppDelegate.swift */,
 				DBF9EBDB21453AD900B1F710 /* Assets.xcassets */,
+				DB6AB5D7214D6899005FA4A5 /* Common */,
 				DBF9EBF421453BEA00B1F710 /* DataClient */,
 				DB6AB5A121499DD2005FA4A5 /* Model */,
+				DB6AB5BA214A5718005FA4A5 /* MovieSearch */,
 				DB6AB5C5214AA564005FA4A5 /* MoviesList */,
-				DB6AB5BA214A5718005FA4A5 /* MoviesSearch */,
+				DB6AB5D2214B0DE5005FA4A5 /* Presenter.swift */,
+				DB6AB5D4214B0E0A005FA4A5 /* Router.swift */,
+				DB6AB5E2214D6C4A005FA4A5 /* StorageClient */,
 				DB6AB5B9214A55AE005FA4A5 /* Support */,
 			);
 			path = TheMovieDB;
@@ -480,18 +531,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB6AB5D3214B0DE5005FA4A5 /* Presenter.swift in Sources */,
 				DB6AB5B321499F82005FA4A5 /* Array+Unmarshalling.swift in Sources */,
 				DB6AB5CB214AA58F005FA4A5 /* MoviesListView.swift in Sources */,
 				DB6AB5C2214A5773005FA4A5 /* MovieSearchViewModel.swift in Sources */,
 				DB6AB5C7214AA57D005FA4A5 /* MoviesListViewController.swift in Sources */,
 				DB6AB5B021499F1A005FA4A5 /* SearchResult+Unmarshalling.swift in Sources */,
+				DB6AB5E1214D6A07005FA4A5 /* SearchHeaderView.swift in Sources */,
+				DB6AB5D5214B0E0A005FA4A5 /* Router.swift in Sources */,
 				DB6AB5AD21499EFE005FA4A5 /* SearchResult.swift in Sources */,
 				DBF9EBF621453C1600B1F710 /* Result.swift in Sources */,
+				DB6AB5DC214D68FD005FA4A5 /* UITextField+Extension.swift in Sources */,
 				DB6AB5BF214A5765005FA4A5 /* MovieSearchView.swift in Sources */,
 				DB6AB5A721499E97005FA4A5 /* Unmarshalling.swift in Sources */,
 				DB6AB5A421499E49005FA4A5 /* Movie.swift in Sources */,
 				DB6AB5AA21499EDA005FA4A5 /* Movie+Unmarshalling.swift in Sources */,
+				DB6AB5DA214D68DB005FA4A5 /* UIButton+Extension.swift in Sources */,
 				DBF9EBD521453AD600B1F710 /* AppDelegate.swift in Sources */,
+				DB6AB5DF214D694B005FA4A5 /* SuggestionViewCell.swift in Sources */,
 				DBF9EBF921453C7500B1F710 /* HTTPLayer.swift in Sources */,
 				DBF9EBFB2145596B00B1F710 /* Endpoint.swift in Sources */,
 				DB6AB5B72149A56B005FA4A5 /* APIClient.swift in Sources */,
@@ -511,6 +568,7 @@
 				DB0A277D2146F7C20085B67B /* HttpLayerTests.swift in Sources */,
 				DB0A277F2146FBB60085B67B /* Endpoint.swift in Sources */,
 				DB6AB5A821499E97005FA4A5 /* Unmarshalling.swift in Sources */,
+				DB6AB5D6214B1271005FA4A5 /* Router.swift in Sources */,
 				DB6AB5A521499E60005FA4A5 /* Movie.swift in Sources */,
 				DB6AB5AB21499EDA005FA4A5 /* Movie+Unmarshalling.swift in Sources */,
 				DBBCC38721484A2700690094 /* SearchParserTests.swift in Sources */,
