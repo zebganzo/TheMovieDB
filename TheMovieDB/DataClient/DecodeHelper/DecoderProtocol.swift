@@ -12,4 +12,10 @@ protocol DecoderProtocol {
     func decode<T>(_ type: T.Type, from data: Data) throws -> T where T : Decodable
 }
 
+class DecoderBuilder {
+    static var decoder: DecoderProtocol {
+        return JSONDecoder()
+    }
+}
+
 extension JSONDecoder: DecoderProtocol { }

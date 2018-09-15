@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let version = 3
 
         let httpLayer = try! AuthenticatedHttpLayer.init(apiKey: apiKey, baseUrl: baseURL, version: version)
-        let apiClient = APIClient(httpLayer: httpLayer)
+        let apiClient = APIClient(httpLayer: httpLayer, decoder: DecoderBuilder.decoder)
         let movieSearchViewModel = MovieSearchViewModel(searchClient: apiClient)
 
         let router = Router(entryViewModel: .movieSearch(movieSearchViewModel))

@@ -10,8 +10,10 @@ import Foundation
 
 final class APIClient {
     private let httpLayer: HttpLayerProtocol
-    init(httpLayer: HttpLayerProtocol) {
+    private let decoder: DecoderProtocol
+    init(httpLayer: HttpLayerProtocol, decoder: DecoderProtocol) {
         self.httpLayer = httpLayer
+        self.decoder = decoder
     }
 }
 
@@ -28,11 +30,12 @@ protocol SearchProtocol {
 extension APIClient: SearchProtocol {
     func search(movie name: String, page: Int = 1, completion: @escaping (Result<SearchResult<Movie>, APIError>) -> Void) {
         // TODO: Has to be greater than 0. Handle specific error.
-        self.httpLayer.request(at: .search(name, page)) { result in
+        self.httpLayer.request(at: .search(name, page)) { [weak self] result in
+            guard let `self` = self else { return }
+
             switch result {
             case .success(let data):
-                guard let json = try? JSONSerialization.jsonObject(with: data) as! JSON
-                    , let searchResult = try? SearchResult<Movie>(json: json) else {
+                guard let searchResult = try? self.decoder.decode(SearchResult<Movie>.self, from: data) else {
                     completion(.failure(.dataBadFormatted))
                     return
                 }
