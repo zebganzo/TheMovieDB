@@ -42,7 +42,7 @@ class MoviesListViewController: UIViewController {
 
 extension MoviesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 // self.viewModel.numberOfMovies
+        return self.viewModel.numberOfMovies
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,5 +53,11 @@ extension MoviesListViewController: UITableViewDataSource {
         cell.movieBasicInfo = self.viewModel.infoForMovie(at: indexPath.row)
 
         return cell
+    }
+}
+
+extension MoviesListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Fetch if necessary
     }
 }
