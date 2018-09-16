@@ -58,6 +58,8 @@ class MovieTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        self.selectionStyle = .none
+
         let internalOffset = 10
 
         self.nameLabel.snp.makeConstraints { make in
