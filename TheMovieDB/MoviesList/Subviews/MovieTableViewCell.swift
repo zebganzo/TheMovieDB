@@ -29,7 +29,7 @@ class MovieTableViewCell: UITableViewCell {
 
     @IBOutlet weak var posterImageView: UIImageView! {
         didSet {
-            self.posterImageView.sd_showActivityIndicatorView()
+            self.posterImageView.sd_setShowActivityIndicatorView(true)
             self.posterImageView.sd_setIndicatorStyle(.gray)
             posterImageView.contentMode = .scaleAspectFit
         }
