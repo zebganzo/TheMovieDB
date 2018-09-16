@@ -7,6 +7,7 @@
 //
 
 import ReactiveSwift
+import Result
 
 protocol MovieBasicInfoProtocol {
     var title: String { get }
@@ -26,10 +27,12 @@ protocol MoviesListProtocol: RouterViewModelProtocol {
     var pageName: String { get }
     var numberOfMovies: Int { get }
     func infoForMovie(at index: Int) -> MovieBasicInfoProtocol
+    func fetchIfNecessary(at index: Int)
+    var fetchMoviesSignal: Signal<Void, AnyError> { get }
 }
 
 class MoviesListViewModel: MoviesListProtocol {
-    private let page: Int
+    private var page: Int
     private let totalPages: Int
     private var movies: [Movie] = []
 
@@ -38,6 +41,34 @@ class MoviesListViewModel: MoviesListProtocol {
 
     private let queryName: String
 
+    let fetchMoviesSignal: Signal<Void, AnyError>
+    private let fetchMoviesSignalSink: Signal<Void, AnyError>.Observer
+
+    private var searchAction: Action<Void, Void, AnyError>?
+
+    private func search() -> Action<Void, Void, AnyError> {
+        return Action<Void, Void, AnyError> { _ -> SignalProducer<Void, AnyError> in
+            return SignalProducer<Void, AnyError> { [weak self] observer, _ in
+                guard let `self` = self else { return }
+
+                self.searchClient.search(movie: self.queryName, page: self.page + 1) { [weak self] result in
+                    guard let `self` = self else { return }
+                    switch result {
+                    case .success(let searchResult):
+                        self.page = searchResult.page
+                        
+                        self.movies = self.movies + searchResult.results
+                        observer.sendCompleted()
+                    case .failure(let error):
+                        observer.send(error: AnyError(error))
+                    }
+                }
+                }.on(completed: { [weak self] in
+                    self?.fetchMoviesSignalSink.send(value: ())
+                })
+        }
+    }
+
     init(searchClient: SearchProtocol, imageClient: ImageProtocol, searchResult: SearchResult<Movie>, queryName: String) {
         self.page = searchResult.page
         self.totalPages = searchResult.totalPages
@@ -45,19 +76,38 @@ class MoviesListViewModel: MoviesListProtocol {
         self.queryName = queryName
         self.searchClient = searchClient
         self.imageClient = imageClient
+        (self.fetchMoviesSignal, self.fetchMoviesSignalSink) = Signal<Void, AnyError>.pipe()
     }
 
-    public var pageName: String {
+    var pageName: String {
         return queryName
     }
 
-    public var numberOfMovies: Int {
+    var numberOfMovies: Int {
         return self.movies.count
     }
 
-    public func infoForMovie(at index: Int) -> MovieBasicInfoProtocol {
+    func infoForMovie(at index: Int) -> MovieBasicInfoProtocol {
         let movie = self.movies[index]
-        let posterURL = self.imageClient.movieImageURL(movie: movie.posterPath, posterSize: .​w500)
+        var posterURL: URL? = nil
+        if let posterPath = movie.posterPath {
+            posterURL = self.imageClient.movieImageURL(movie: posterPath, posterSize: .​w500)
+        }
         return MovieBasicInfo(title: movie.​name, releaseData: movie.releaseDate, posterURL: posterURL, overview: movie.overview)
+    }
+
+    func fetchIfNecessary(at index: Int) {
+
+        // Is it already fetching new movies?
+        if let searchAction = searchAction, searchAction.isExecuting.value { return }
+
+        // Have all the pages been loaded?
+        if page == totalPages { return }
+
+        // Is it necessary to fetch new movies?
+        if index < self.numberOfMovies - 1 { return }
+
+        self.searchAction = self.search()
+        self.searchAction?.apply().start()
     }
 }

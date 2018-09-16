@@ -36,10 +36,26 @@ class MoviesListViewController: UIViewController {
     override func loadView() {
         self.view = self.moviesListView
         self.moviesListView.tableView.dataSource = self
+        self.moviesListView.tableView.delegate = self
         self.moviesListView.tableView.register(UINib(nibName: MovieTableViewCell.defaultNibName, bundle: nil), forCellReuseIdentifier: MovieTableViewCell.defaultCellIdentifier)
         self.moviesListView.tableView.rowHeight = UITableViewAutomaticDimension
         self.moviesListView.tableView.estimatedRowHeight = 260
 
+        self.addCustomBackButton()
+
+        self.viewModel.fetchMoviesSignal
+            .observe(on: UIScheduler())
+            .observeResult { [weak self] result in
+                switch result {
+                case .success:
+                    self?.moviesListView.tableView.reloadData()
+                case .failure(let error):
+                    print("Error \(error.localizedDescription)")
+                }
+        }
+    }
+
+    private func addCustomBackButton() {
         self.navigationItem.hidesBackButton = true
         let backButton = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.plain, target: self, action: #selector(type(of: self).back(sender:)))
         self.navigationItem.leftBarButtonItem = backButton
@@ -69,6 +85,6 @@ extension MoviesListViewController: UITableViewDataSource {
 
 extension MoviesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // Fetch if necessary
+        self.viewModel.fetchIfNecessary(at: indexPath.row)
     }
 }
