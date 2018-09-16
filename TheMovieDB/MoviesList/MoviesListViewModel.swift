@@ -10,12 +10,16 @@ import ReactiveSwift
 
 protocol MovieBasicInfoProtocol {
     var title: String { get }
+    var releaseData: String { get }
+    var posterURL: URL { get }
+    var overview: String { get }
 }
 
-extension Movie: MovieBasicInfoProtocol {
-    var title: String {
-        return self.​name
-    }
+struct MovieBasicInfo: MovieBasicInfoProtocol {
+    let title: String
+    let releaseData: String
+    let posterURL: URL
+    let overview: String
 }
 
 class MoviesListViewModel {
@@ -42,7 +46,9 @@ class MoviesListViewModel {
     }
 
     public func infoForMovie(at index: Int) -> MovieBasicInfoProtocol {
-        return self.movies[index]
+        let movie = self.movies[index]
+        let posterURL = URL.init(string: "http://image.tmdb.org/t/p/w500/2DtPSyODKWXluIRV7PVru0SSzja.jpg")!
+        return MovieBasicInfo(title: movie.​name, releaseData: movie.releaseDate, posterURL: posterURL, overview: movie.overview)
     }
 }
 

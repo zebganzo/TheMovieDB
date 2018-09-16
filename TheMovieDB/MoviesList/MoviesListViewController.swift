@@ -34,36 +34,24 @@ class MoviesListViewController: UIViewController {
     override func loadView() {
         self.view = self.moviesListView
         self.moviesListView.tableView.dataSource = self
-        self.moviesListView.tableView.register(MovieInfoViewCell.self, forCellReuseIdentifier: MovieInfoViewCell.defaultCellIdentifier)
+        self.moviesListView.tableView.register(UINib(nibName: MovieTableViewCell.defaultNibName, bundle: nil), forCellReuseIdentifier: MovieTableViewCell.defaultCellIdentifier)
+        self.moviesListView.tableView.rowHeight = UITableViewAutomaticDimension
+        self.moviesListView.tableView.estimatedRowHeight = 260
     }
 }
 
 extension MoviesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.numberOfMovies
+        return 1 // self.viewModel.numberOfMovies
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let movieBasicInfo = self.viewModel.infoForMovie(at: indexPath.row)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.defaultCellIdentifier, for: indexPath) as? MovieTableViewCell else {
+            fatalError("Dequeued wrong type of cell")
+        }
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: MovieInfoViewCell.defaultCellIdentifier, for: indexPath)
-
-        cell.textLabel?.text = movieBasicInfo.title
+        cell.movieBasicInfo = self.viewModel.infoForMovie(at: indexPath.row)
 
         return cell
-    }
-}
-
-class MovieInfoViewCell: UITableViewCell {
-
-    static let defaultCellIdentifier = "MovieInfoCell"
-
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
-    }
-
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

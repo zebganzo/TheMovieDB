@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let version = 3
 
         let httpLayer = try! AuthenticatedHttpLayer.init(apiKey: apiKey, baseUrl: baseURL, version: version)
-        let apiClient = APIClient(httpLayer: httpLayer, decoder: DecoderBuilder.decoder)
+        let imageHttpLayer = try! ImageHttpLayer.init(baseUrl: "http://image.tmdb.org")
+        let apiClient = APIClient(httpLayer: httpLayer, imageHttpLayer: imageHttpLayer, decoder: DecoderBuilder.decoder)
         let storeClient = StoreClient(store: ExtremelyAdvancedStorageSystem.standard)
         let movieSearchViewModel = MovieSearchViewModel(searchClient: apiClient, suggestionsProtocol: storeClient)
 

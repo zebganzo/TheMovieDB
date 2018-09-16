@@ -22,6 +22,8 @@ final class MoviesListView: UIView {
         super.init(frame: .zero)
         self.backgroundColor = UIColor.white
 
+        self.tableView.tableFooterView = UIView()
+
         self.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { make -> Void in
             make.center.equalTo(self)

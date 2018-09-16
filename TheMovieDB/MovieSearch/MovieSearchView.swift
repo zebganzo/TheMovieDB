@@ -24,9 +24,11 @@ final class MovieSearchView: UIView {
     init(loadingSignalProducer: SignalProducer<Bool, NoError>) {
         self.headerView = SearchHeaderView(loadingSignalProducer: loadingSignalProducer)
         super.init(frame: .zero)
-        self.backgroundColor = UIColor.white
-        self.addSubview(self.tableView)
+        self.backgroundColor = .white
 
+        self.tableView.tableFooterView = UIView()
+        
+        self.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { make -> Void in
             make.center.width.height.equalTo(self)
         }
