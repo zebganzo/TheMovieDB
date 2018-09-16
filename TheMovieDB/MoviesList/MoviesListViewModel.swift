@@ -41,7 +41,7 @@ class MoviesListViewModel {
         return self.movies.count
     }
 
-    public func infoForMoviw(at index: Int) -> MovieBasicInfoProtocol {
+    public func infoForMovie(at index: Int) -> MovieBasicInfoProtocol {
         return self.movies[index]
     }
 }

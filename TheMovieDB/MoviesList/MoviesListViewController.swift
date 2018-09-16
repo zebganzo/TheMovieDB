@@ -44,7 +44,7 @@ extension MoviesListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let movieBasicInfo = self.viewModel.infoForMoviw(at: indexPath.row)
+        let movieBasicInfo = self.viewModel.infoForMovie(at: indexPath.row)
 
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieInfoViewCell.defaultCellIdentifier, for: indexPath)
 
