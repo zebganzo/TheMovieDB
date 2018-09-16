@@ -27,6 +27,9 @@ enum APIError: Error {
 
 protocol SearchProtocol {
     func search(movie name: String, page: Int, completion: @escaping (Result<SearchResult<Movie>, APIError>) -> Void)
+}
+
+protocol ImageProtocol {
     func movieImageURL(movie posterPath: String, posterSize size: Poster​Size) -> URL?
 }
 
@@ -49,7 +52,9 @@ extension APIClient: SearchProtocol {
             }
         }
     }
+}
 
+extension APIClient: ImageProtocol {
     func movieImageURL(movie posterPath: String, posterSize size: Poster​Size) -> URL? {
         return self.imageHttpLayer.buildUrl(endpoint: Endpoint.image(posterPath, size))
     }
