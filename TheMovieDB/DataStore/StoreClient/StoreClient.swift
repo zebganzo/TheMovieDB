@@ -38,8 +38,17 @@ final class StoreClient: SuggestionsProtocol {
     }
 
     func save(suggestion: Suggestion) {
-        if !suggestions.value.contains(suggestion) {
-            suggestions.value.append(suggestion)
+        if let index = suggestions.value.index(of: suggestion), index > 0 {
+            // Move it at the head
+            suggestions.value.insert(suggestions.value.remove(at: index), at: 0)
+            return
         }
+
+        if suggestions.value.count == 10 {
+            // If it's full, discard the oldest
+            suggestions.value.removeLast()
+        }
+
+        suggestions.value.insert(suggestion, at: 0)
     }
 }
