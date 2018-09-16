@@ -36,6 +36,7 @@ class MovieSearchViewController: UIViewController {
         self.viewModel.searchAction <~ self.movieSearchView.headerView.searchTextSignal
         self.viewModel.suggestions
             .producer
+            .observe(on: UIScheduler())
             .startWithValues { [weak self] suggestions in
                 self?.suggestions = suggestions
         }
