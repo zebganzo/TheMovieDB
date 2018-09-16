@@ -17,10 +17,10 @@ enum MoviesListUserInteraction: UserInteraction {
 
 class MoviesListViewController: UIViewController {
 
-    private let viewModel: MoviesListViewModel
+    private let viewModel: MoviesListProtocol
     private let moviesListView = MoviesListView()
 
-    init(viewModel: MoviesListViewModel) {
+    init(viewModel: MoviesListProtocol, presenterManager: PresenterManagerProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.title = self.viewModel.pageName

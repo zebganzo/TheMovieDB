@@ -37,17 +37,50 @@ class HttpLayerTests: QuickSpec {
 
             context("build URL") {
 
-                it("for download an image data") {
-                    let expectedUrl = "http://image.tmdb.org/t/p/w92/2DtPSyODKWXluIRV7PVru0SSzja.jpg"
+                let baseURL = "http://image.tmdb.org/t/p/"
+                let imageName = "/2DtPSyODKWXluIRV7PVru0SSzja.jpg"
 
-                    let baseURL = "http://image.tmdb.org"
-                    let imageName = "2DtPSyODKWXluIRV7PVru0SSzja.jpg"
+                it("for ​w92 size poster URL") {
+                    let expectedUrl = "\(baseURL)w92\(imageName)"
+
                     let endpoint: Endpoint = .image(imageName, .​w92)
 
                     let httpLayer: HttpLayerProtocol = try! ImageHttpLayer(baseUrl: baseURL)
                     let url = httpLayer.buildUrl(endpoint: endpoint)
 
-                    expect(url).toNot(beNil())
+                    expect(url?.absoluteString) == expectedUrl
+                }
+
+                it("for ​w185 size poster URL") {
+                    let expectedUrl = "\(baseURL)w185\(imageName)"
+
+                    let endpoint: Endpoint = .image(imageName, .​w92)
+
+                    let httpLayer: HttpLayerProtocol = try! ImageHttpLayer(baseUrl: baseURL)
+                    let url = httpLayer.buildUrl(endpoint: endpoint)
+
+                    expect(url?.absoluteString) == expectedUrl
+                }
+
+                it("for ​w500 size poster URL") {
+                    let expectedUrl = "\(baseURL)w500\(imageName)"
+
+                    let endpoint: Endpoint = .image(imageName, .​w92)
+
+                    let httpLayer: HttpLayerProtocol = try! ImageHttpLayer(baseUrl: baseURL)
+                    let url = httpLayer.buildUrl(endpoint: endpoint)
+
+                    expect(url?.absoluteString) == expectedUrl
+                }
+
+                it("for ​w780 size poster URL") {
+                    let expectedUrl = "\(baseURL)w780\(imageName)"
+
+                    let endpoint: Endpoint = .image(imageName, .​w92)
+
+                    let httpLayer: HttpLayerProtocol = try! ImageHttpLayer(baseUrl: baseURL)
+                    let url = httpLayer.buildUrl(endpoint: endpoint)
+
                     expect(url?.absoluteString) == expectedUrl
                 }
             }

@@ -33,6 +33,9 @@ protocol ImageProtocol {
     func movieImageURL(movie posterPath: String, posterSize size: Poster​Size) -> URL?
 }
 
+protocol ApiClientProtocol: ImageProtocol & SearchProtocol { }
+extension APIClient: ApiClientProtocol { }
+
 extension APIClient: SearchProtocol {
     func search(movie name: String, page: Int = 1, completion: @escaping (Result<SearchResult<Movie>, APIError>) -> Void) {
         // TODO: Has to be greater than 0. Handle specific error.

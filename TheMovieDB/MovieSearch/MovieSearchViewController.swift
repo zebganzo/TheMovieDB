@@ -15,16 +15,20 @@ class MovieSearchViewController: UIViewController {
 
     private let viewModel: MovieSearchProtocol
     private let movieSearchView: MovieSearchView
+    private let presenterManager: PresenterManagerProtocol
 
     private var suggestions: [Suggestion] = [] {
         didSet {
-            self.movieSearchView.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.movieSearchView.tableView.reloadData()
+            }
         }
     }
 
-    init(viewModel: MovieSearchProtocol) {
+    init(viewModel: MovieSearchProtocol, presenterManager: PresenterManagerProtocol) {
         self.viewModel = viewModel
         self.movieSearchView = MovieSearchView(loadingSignalProducer: self.viewModel.searchAction.isExecuting.producer)
+        self.presenterManager = presenterManager
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -38,13 +42,10 @@ class MovieSearchViewController: UIViewController {
 
         self.viewModel.searchAction.values
             .observe(on: UIScheduler())
-            .observeValues { [weak self] searchResult in
+            .observeValues { [weak self] searchResultAndQuery in
                 guard let `self` = self else { return }
-
-                let viewModel = MoviesListViewModel(searchResult: searchResult, queryName: "List")
-                let viewController = MoviesListViewController(viewModel: viewModel)
-
-                self.navigationController?.pushViewController(viewController, animated: true)
+                let routingEvent = RoutingEvent.action(.movieSearch(self.viewModel), searchResultAndQuery)
+                self.presenterManager.perform(action: .push(routingEvent))
         }
 
         _ = self.viewModel.searchAction.errors
