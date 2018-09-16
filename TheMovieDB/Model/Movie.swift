@@ -8,7 +8,7 @@
 
 struct Movie: Decodable {
     let ​name: String
-    let posterPath: String
+    let posterPath: String?
     let releaseDate: String
     let overview: String
 
