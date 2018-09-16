@@ -36,11 +36,31 @@ class MovieSearchViewController: UIViewController {
                 self?.suggestions = suggestions
         }
 
-        _ = self.viewModel.searchAction.errors
+        self.viewModel.searchAction.values
             .observe(on: UIScheduler())
+            .observeValues { [weak self] searchResult in
+                guard let `self` = self else { return }
+
+                let viewModel = MoviesListViewModel(searchResult: searchResult, queryName: "List")
+                let viewController = MoviesListViewController(viewModel: viewModel)
+
+                self.navigationController?.pushViewController(viewController, animated: true)
+        }
+
+        _ = self.viewModel.searchAction.errors
             .observeValues { error in
                 print("Error \(error)")
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
 
     @available(*, unavailable)
@@ -75,5 +95,11 @@ extension MovieSearchViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 140.0
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
+        let suggestion = self.viewModel.suggestions.value[indexPath.row]
+        self.viewModel.searchAction.apply(suggestion).start()
     }
 }

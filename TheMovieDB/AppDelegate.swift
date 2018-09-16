@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         let navigationController = UINavigationController()
-        navigationController.navigationBar.isHidden = true
         let apiKey = "2696829a81b1b5827d515ff121700838"
         let baseURL = "http://api.themoviedb.org"
         let version = 3
