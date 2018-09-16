@@ -19,9 +19,11 @@ class MoviesListViewController: UIViewController {
 
     private let viewModel: MoviesListProtocol
     private let moviesListView = MoviesListView()
+    private let presenterManager: PresenterManagerProtocol
 
     init(viewModel: MoviesListProtocol, presenterManager: PresenterManagerProtocol) {
         self.viewModel = viewModel
+        self.presenterManager = presenterManager
         super.init(nibName: nil, bundle: nil)
         self.title = self.viewModel.pageName
     }
@@ -37,6 +39,15 @@ class MoviesListViewController: UIViewController {
         self.moviesListView.tableView.register(UINib(nibName: MovieTableViewCell.defaultNibName, bundle: nil), forCellReuseIdentifier: MovieTableViewCell.defaultCellIdentifier)
         self.moviesListView.tableView.rowHeight = UITableViewAutomaticDimension
         self.moviesListView.tableView.estimatedRowHeight = 260
+
+        self.navigationItem.hidesBackButton = true
+        let backButton = UIBarButtonItem(title: "Search", style: UIBarButtonItemStyle.plain, target: self, action: #selector(type(of: self).back(sender:)))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationController?.navigationBar.tintColor = .black
+    }
+
+    @objc func back(sender: UIBarButtonItem) {
+        self.presenterManager.perform(action: .pop)
     }
 }
 
