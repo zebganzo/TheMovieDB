@@ -39,9 +39,13 @@ extension AppManager {
         let version = 3
         let imageLayerBaseUrl = "http://image.tmdb.org"
 
-        let httpLayer = try! AuthenticatedHttpLayer(apiKey: apiKey, baseUrl: httpLayerBaseURL, version: version)
-        let imageHttpLayer = try! ImageHttpLayer(baseUrl: imageLayerBaseUrl)
-        return APIClient(httpLayer: httpLayer, imageHttpLayer: imageHttpLayer, decoder: DecoderBuilder.decoder)
+        do {
+            let httpLayer = try HttpLayer(apiKey: apiKey, baseUrl: httpLayerBaseURL, version: version)
+            let imageHttpLayer = try ImageHttpLayer(baseUrl: imageLayerBaseUrl)
+            return APIClient(httpLayer: httpLayer, imageHttpLayer: imageHttpLayer, decoder: DecoderBuilder.decoder)
+        } catch let error {
+            fatalError("Unable to create the HttpLayers \(error.localizedDescription)")
+        }
     }
 
     private static func buildStoreClient(storeClient: SuggestionsProtocol? = nil) -> SuggestionsProtocol {
