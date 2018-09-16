@@ -44,12 +44,14 @@ extension APIClient: SearchProtocol {
 
             switch result {
             case .success(let data):
-                guard let searchResult = try? self.decoder.decode(SearchResult<Movie>.self, from: data) else {
+                var searchResult: SearchResult<Movie>
+                do {
+                    searchResult = try self.decoder.decode(SearchResult<Movie>.self, from: data)
+                    completion(.success(searchResult))
+                } catch let error {
+                    print("[Deconding] \(error.localizedDescription)")
                     completion(.failure(.dataBadFormatted))
-                    return
                 }
-
-                completion(.success(searchResult))
             case .failure(let error):
                 print(error)
             }
