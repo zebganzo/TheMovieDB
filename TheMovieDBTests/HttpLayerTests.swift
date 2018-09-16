@@ -24,7 +24,7 @@ class HttpLayerTests: QuickSpec {
                     let version = 3
                     let endpoint: Endpoint = .search("batman", 1)
 
-                    let httpLayer: HttpLayerProtocol = try! AuthenticatedHttpLayer(apiKey: apiKey, baseUrl: baseURL, version: version)
+                    let httpLayer: HttpLayerProtocol = try! HttpLayer(apiKey: apiKey, baseUrl: baseURL, version: version)
                     let url = httpLayer.buildUrl(endpoint: endpoint)
 
                     expect(url).toNot(beNil())
