@@ -41,7 +41,6 @@ class MovieSearchViewController: UIViewController {
         }
 
         self.viewModel.searchAction.values
-            .observe(on: UIScheduler())
             .observeValues { [weak self] searchResultAndQuery in
                 guard let `self` = self else { return }
                 let routingEvent = RoutingEvent.action(.movieSearch(self.viewModel), searchResultAndQuery)

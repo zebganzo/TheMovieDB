@@ -61,9 +61,13 @@ extension PresenterManager: PresenterManagerProtocol {
                 assertionFailure("At this point a viewModel should be given, something went wront with \(routingEvent)")
                 return
             }
-            self.navigationController.pushViewController(self.viewController(for: viewModel), animated: true)
+            DispatchQueue.main.async {
+                self.navigationController.pushViewController(self.viewController(for: viewModel), animated: true)
+            }
         case .pop:
-            self.navigationController.popViewController(animated: true)
+            DispatchQueue.main.async {
+                self.navigationController.popViewController(animated: true)
+            }
         }
     }
 
