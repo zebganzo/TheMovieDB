@@ -10,8 +10,10 @@ import Foundation
 
 final class APIClient {
     private let httpLayer: HttpLayerProtocol
+    private let imageHttpLayer: HttpLayerProtocol
     private let decoder: DecoderProtocol
-    init(httpLayer: HttpLayerProtocol, decoder: DecoderProtocol) {
+    init(httpLayer: HttpLayerProtocol, imageHttpLayer: HttpLayerProtocol, decoder: DecoderProtocol) {
+        self.imageHttpLayer = imageHttpLayer
         self.httpLayer = httpLayer
         self.decoder = decoder
     }
@@ -25,6 +27,7 @@ enum APIError: Error {
 
 protocol SearchProtocol {
     func search(movie name: String, page: Int, completion: @escaping (Result<SearchResult<Movie>, APIError>) -> Void)
+    func movieImageURL(movie posterPath: String, posterSize size: Poster​Size) -> URL?
 }
 
 extension APIClient: SearchProtocol {
@@ -45,5 +48,9 @@ extension APIClient: SearchProtocol {
                 print(error)
             }
         }
+    }
+
+    func movieImageURL(movie posterPath: String, posterSize size: Poster​Size) -> URL? {
+        return self.imageHttpLayer.buildUrl(endpoint: Endpoint.image(posterPath, size))
     }
 }
