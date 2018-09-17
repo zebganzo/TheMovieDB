@@ -49,8 +49,9 @@ class MovieSearchViewController: UIViewController {
         }
 
         _ = self.viewModel.searchAction.errors
-            .observeValues { error in
-                print("Error \(error)")
+            .observeValues { searchError in
+                UIAlertController.showAlert(title: "Search error",
+                                            message: "An error occured while performing the research: (\(searchError.localizedDescription)")
         }
     }
 

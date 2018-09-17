@@ -10,17 +10,17 @@ import ReactiveSwift
 import Result
 
 protocol MovieSearchProtocol: RouterViewModelProtocol {
-    var searchAction: Action<String, (String, SearchResult<Movie>), AnyError> { get }
+    var searchAction: Action<String, (String, SearchResult<Movie>), SearchError> { get }
     var suggestions: MutableProperty<[Suggestion]> { get }
 }
 
 enum SearchError: Error {
-    case dataMissing
+    case searchError
 }
 
 class MovieSearchViewModel: MovieSearchProtocol {
     private let searchClient: SearchProtocol
-    let searchAction: Action<String, (String, SearchResult<Movie>), AnyError>
+    let searchAction: Action<String, (String, SearchResult<Movie>), SearchError>
 
     let suggestions: MutableProperty<[Suggestion]>
 
@@ -28,15 +28,18 @@ class MovieSearchViewModel: MovieSearchProtocol {
         self.searchClient = searchClient
         self.suggestions = suggestionsProtocol.suggestions
 
-        self.searchAction = Action { (name: String) -> SignalProducer<(String, SearchResult<Movie>), AnyError> in
-            return SignalProducer<(String, SearchResult<Movie>), AnyError> { observer, _ in
+        self.searchAction = Action { (name: String) -> SignalProducer<(String, SearchResult<Movie>), SearchError> in
+            return SignalProducer<(String, SearchResult<Movie>), SearchError> { observer, _ in
                 searchClient.search(movie: name, page: 1) { result in
                     switch result {
                     case .success(let searchResult):
                         observer.send(value: (name, searchResult))
                         observer.sendCompleted()
-                    case .failure(let error):
-                        observer.send(error: AnyError(error))
+                    case .failure(let apiError):
+                        switch apiError {
+                        case .badRequest, .dataBadFormatted, .dataMissing:
+                            observer.send(error: .searchError)
+                        }
                     }
                 }
                 }.on(value: { _ in

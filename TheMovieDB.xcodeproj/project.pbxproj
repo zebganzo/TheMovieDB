@@ -12,6 +12,7 @@
 		DB0A277D2146F7C20085B67B /* HttpLayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0A277C2146F7C20085B67B /* HttpLayerTests.swift */; };
 		DB0A277E2146FBB40085B67B /* HTTPLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBF821453C7500B1F710 /* HTTPLayer.swift */; };
 		DB0A277F2146FBB60085B67B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9EBFA2145596B00B1F710 /* Endpoint.swift */; };
+		DB4129FB21500CA500C93956 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBD43DA214F8CB2008B0150 /* UIAlertController+Extension.swift */; };
 		DB6AB5A421499E49005FA4A5 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A321499E49005FA4A5 /* Movie.swift */; };
 		DB6AB5A521499E60005FA4A5 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5A321499E49005FA4A5 /* Movie.swift */; };
 		DB6AB5AD21499EFE005FA4A5 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6AB5AC21499EFE005FA4A5 /* SearchResult.swift */; };
@@ -615,6 +616,7 @@
 				DB6AB5FB214EC61A005FA4A5 /* MovieSearchViewController.swift in Sources */,
 				DBA3DF59214702580084F7F5 /* Result.swift in Sources */,
 				DB6AB5E8214DACAA005FA4A5 /* DecoderProtocol.swift in Sources */,
+				DB4129FB21500CA500C93956 /* UIAlertController+Extension.swift in Sources */,
 				DB6AB5CC214AA5A6005FA4A5 /* MoviesListViewModel.swift in Sources */,
 				DB0A277E2146FBB40085B67B /* HTTPLayer.swift in Sources */,
 				DB6AB5F8214EC017005FA4A5 /* PresenterManager.swift in Sources */,
