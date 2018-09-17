@@ -41,9 +41,11 @@ final class StoreClient: SuggestionsProtocol {
     func save(suggestion: Suggestion) {
 
         // Is the new suggestion already in the list?
-        if let index = suggestions.value.index(of: suggestion), index > 0 {
+        if let index = suggestions.value.index(of: suggestion) {
             // Move it at the head, if it's not already there
-            suggestions.value.insert(suggestions.value.remove(at: index), at: 0)
+            if index > 0 {
+                suggestions.value.insert(suggestions.value.remove(at: index), at: 0)
+            }
             return
         }
 
