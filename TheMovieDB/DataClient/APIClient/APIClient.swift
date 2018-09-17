@@ -9,12 +9,12 @@
 import Foundation
 
 final class APIClient {
-    private let httpLayer: HttpLayerProtocol
+    private let movieHttpLayer: HttpLayerProtocol
     private let imageHttpLayer: HttpLayerProtocol
     private let decoder: DecoderProtocol
-    init(httpLayer: HttpLayerProtocol, imageHttpLayer: HttpLayerProtocol, decoder: DecoderProtocol) {
+    init(movieHttpLayer: HttpLayerProtocol, imageHttpLayer: HttpLayerProtocol, decoder: DecoderProtocol) {
         self.imageHttpLayer = imageHttpLayer
-        self.httpLayer = httpLayer
+        self.movieHttpLayer = movieHttpLayer
         self.decoder = decoder
     }
 }
@@ -39,7 +39,7 @@ extension APIClient: ApiClientProtocol { }
 extension APIClient: SearchProtocol {
     func search(movie name: String, page: Int = 1, completion: @escaping (Result<SearchResult<Movie>, APIError>) -> Void) {
         // TODO: Has to be greater than 0. Handle specific error.
-        self.httpLayer.request(at: .search(name, page)) { [weak self] result in
+        self.movieHttpLayer.request(at: .search(name, page)) { [weak self] result in
             guard let `self` = self else { return }
 
             switch result {

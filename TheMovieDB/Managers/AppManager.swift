@@ -39,14 +39,14 @@ extension AppManager {
         }
 
         let apiKey = "2696829a81b1b5827d515ff121700838"
-        let httpLayerBaseURL = "http://api.themoviedb.org"
+        let movieHttpLayerBaseURL = "http://api.themoviedb.org"
         let version = 3
-        let imageLayerBaseUrl = "http://image.tmdb.org"
+        let imageHttpLayerBaseUrl = "http://image.tmdb.org"
 
         do {
-            let httpLayer = try HttpLayer(apiKey: apiKey, baseUrl: httpLayerBaseURL, version: version)
-            let imageHttpLayer = try ImageHttpLayer(baseUrl: imageLayerBaseUrl)
-            return APIClient(httpLayer: httpLayer, imageHttpLayer: imageHttpLayer, decoder: DecoderBuilder.decoder)
+            return APIClient(movieHttpLayer: try MovieHttpLayer(apiKey: apiKey, baseUrl: movieHttpLayerBaseURL, version: version),
+                             imageHttpLayer: try ImageHttpLayer(baseUrl: imageHttpLayerBaseUrl),
+                             decoder: DecoderBuilder.decoder)
         } catch let error {
             throw AppManagerError.initialization(error)
         }

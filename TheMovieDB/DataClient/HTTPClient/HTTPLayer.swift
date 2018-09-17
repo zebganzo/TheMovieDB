@@ -84,7 +84,7 @@ final class ImageHttpLayer: HttpLayerProtocol {
     }
 }
 
-final class HttpLayer: HttpLayerProtocol {
+final class MovieHttpLayer: HttpLayerProtocol {
 
     private let baseURL: URL
     private let version: Int
