@@ -16,6 +16,7 @@ protocol MovieSearchProtocol: RouterViewModelProtocol {
 
 enum SearchError: Error {
     case searchError
+    case noMoviesFound
 }
 
 class MovieSearchViewModel: MovieSearchProtocol {
@@ -33,6 +34,12 @@ class MovieSearchViewModel: MovieSearchProtocol {
                 searchClient.search(movie: name, page: 1) { result in
                     switch result {
                     case .success(let searchResult):
+
+                        if searchResult.results.isEmpty {
+                            observer.send(error: .noMoviesFound)
+                            return
+                        }
+
                         observer.send(value: (name, searchResult))
                         observer.sendCompleted()
                     case .failure(let apiError):
