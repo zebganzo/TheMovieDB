@@ -11,6 +11,7 @@ import UIKit
 extension UIAlertController {
     static func showAlert(title: String?, message: String?, animated: Bool = true, completion: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         alertController.show(animated: true, completion: completion)
     }
 
