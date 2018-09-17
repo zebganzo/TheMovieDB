@@ -28,7 +28,11 @@ protocol MoviesListProtocol: RouterViewModelProtocol {
     var numberOfMovies: Int { get }
     func infoForMovie(at index: Int) -> MovieBasicInfoProtocol
     func fetchIfNecessary(at index: Int)
-    var fetchMoviesSignal: Signal<Void, AnyError> { get }
+    var fetchMoviesSignal: Signal<Void, ListError> { get }
+}
+
+enum ListError: Error {
+    case listError
 }
 
 class MoviesListViewModel: MoviesListProtocol {
@@ -41,14 +45,14 @@ class MoviesListViewModel: MoviesListProtocol {
 
     private let queryName: String
 
-    let fetchMoviesSignal: Signal<Void, AnyError>
-    private let fetchMoviesSignalSink: Signal<Void, AnyError>.Observer
+    let fetchMoviesSignal: Signal<Void, ListError>
+    private let fetchMoviesSignalSink: Signal<Void, ListError>.Observer
 
-    private var searchAction: Action<Void, Void, AnyError>?
+    private var searchAction: Action<Void, Void, ListError>?
 
-    private func search() -> Action<Void, Void, AnyError> {
-        return Action<Void, Void, AnyError> { _ -> SignalProducer<Void, AnyError> in
-            return SignalProducer<Void, AnyError> { [weak self] observer, _ in
+    private func search() -> Action<Void, Void, ListError> {
+        return Action<Void, Void, ListError> { _ -> SignalProducer<Void, ListError> in
+            return SignalProducer<Void, ListError> { [weak self] observer, _ in
                 guard let `self` = self else { return }
 
                 self.searchClient.search(movie: self.queryName, page: self.page + 1) { [weak self] result in
@@ -59,8 +63,11 @@ class MoviesListViewModel: MoviesListProtocol {
                         
                         self.movies = self.movies + searchResult.results
                         observer.sendCompleted()
-                    case .failure(let error):
-                        observer.send(error: AnyError(error))
+                    case .failure(let apiError):
+                        switch apiError {
+                        case .badRequest, .dataBadFormatted, .dataMissing:
+                            observer.send(error: .listError)
+                        }
                     }
                 }
                 }.on(completed: { [weak self] in
@@ -76,7 +83,7 @@ class MoviesListViewModel: MoviesListProtocol {
         self.queryName = queryName
         self.searchClient = searchClient
         self.imageClient = imageClient
-        (self.fetchMoviesSignal, self.fetchMoviesSignalSink) = Signal<Void, AnyError>.pipe()
+        (self.fetchMoviesSignal, self.fetchMoviesSignalSink) = Signal<Void, ListError>.pipe()
     }
 
     var pageName: String {

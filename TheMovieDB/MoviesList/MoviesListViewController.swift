@@ -50,7 +50,7 @@ class MoviesListViewController: UIViewController {
                 case .success:
                     self?.moviesListView.tableView.reloadData()
                 case .failure(let error):
-                    print("Error \(error.localizedDescription)")
+                    UIAlertController.showAlert(title: "Search error", message: "Error while loading: (\(error.localizedDescription))")
                 }
         }
     }
