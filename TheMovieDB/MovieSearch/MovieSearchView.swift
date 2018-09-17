@@ -27,6 +27,7 @@ final class MovieSearchView: UIView {
         self.backgroundColor = .white
 
         self.tableView.tableFooterView = UIView()
+        self.tableView.reactive.isUserInteractionEnabled <~ loadingSignalProducer.negate()
         
         self.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { make -> Void in
