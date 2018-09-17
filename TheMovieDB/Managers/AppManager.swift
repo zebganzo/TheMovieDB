@@ -28,6 +28,7 @@ class AppManager {
         self.routingManager =  type(of: self).buildRoutingManager(routingManager: routingManager, searchClient: self.apiClient, suggestionsClient: self.storeClient, imageClient: self.apiClient)
         self.presenterManager = type(of: self).buildPresenterManager(presenterManager: presenterManager, routingManager: self.routingManager)
 
+        // Start the routing
         self.presenterManager.perform(action: PresenterManagerAction.push(.entryPoint))
     }
 }
