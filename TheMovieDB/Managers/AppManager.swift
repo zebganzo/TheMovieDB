@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum AppManagerError: Error {
+    case initialization(Error)
+}
+
 class AppManager {
 
     let apiClient: ApiClientProtocol
@@ -18,8 +22,8 @@ class AppManager {
     init(apiClient: ApiClientProtocol? = nil
         , storeClient: SuggestionsProtocol? = nil
         , presenterManager: PresenterManagerProtocol? = nil
-        , routingManager: RoutingManagerProtocol? = nil) {
-        self.apiClient = type(of: self).buildApiClient(apiClient: apiClient)
+        , routingManager: RoutingManagerProtocol? = nil) throws {
+        self.apiClient = try type(of: self).buildApiClient(apiClient: apiClient)
         self.storeClient = type(of: self).buildStoreClient(storeClient: storeClient)
         self.routingManager =  type(of: self).buildRoutingManager(routingManager: routingManager, searchClient: self.apiClient, suggestionsClient: self.storeClient, imageClient: self.apiClient)
         self.presenterManager = type(of: self).buildPresenterManager(presenterManager: presenterManager, routingManager: self.routingManager)
@@ -29,7 +33,7 @@ class AppManager {
 }
 
 extension AppManager {
-    private static func buildApiClient(apiClient: ApiClientProtocol? = nil) -> ApiClientProtocol {
+    private static func buildApiClient(apiClient: ApiClientProtocol? = nil) throws -> ApiClientProtocol {
         if let apiClient = apiClient {
             return apiClient
         }
@@ -44,7 +48,7 @@ extension AppManager {
             let imageHttpLayer = try ImageHttpLayer(baseUrl: imageLayerBaseUrl)
             return APIClient(httpLayer: httpLayer, imageHttpLayer: imageHttpLayer, decoder: DecoderBuilder.decoder)
         } catch let error {
-            fatalError("Unable to create the HttpLayers \(error.localizedDescription)")
+            throw AppManagerError.initialization(error)
         }
     }
 

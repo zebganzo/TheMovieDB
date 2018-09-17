@@ -17,7 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        self.appManager = AppManager()
+        do {
+            self.appManager = try AppManager()
+        } catch AppManagerError.initialization(let error){
+            UIAlertController.showAlert(title: "Initialization error", message: error.localizedDescription, animated: true)
+        } catch let error {
+            UIAlertController.showAlert(title: "Unknown error", message: error.localizedDescription, animated: true)
+        }
 
         self.window?.rootViewController = self.appManager?.presenterManager.rootViewController
         self.window?.makeKeyAndVisible()
