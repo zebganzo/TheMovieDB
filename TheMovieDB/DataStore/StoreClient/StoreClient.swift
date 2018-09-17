@@ -22,6 +22,7 @@ final class StoreClient: SuggestionsProtocol {
 
     private let store: ExtremelyAdvancedStorageSystem
     private static let storageKey = "Suggestions"
+    private static let maximumCapacity = 10
 
     var suggestions = MutableProperty<[Suggestion]>([])
 
@@ -38,17 +39,21 @@ final class StoreClient: SuggestionsProtocol {
     }
 
     func save(suggestion: Suggestion) {
+
+        // Is the new suggestion already in the list?
         if let index = suggestions.value.index(of: suggestion), index > 0 {
-            // Move it at the head
+            // Move it at the head, if it's not already there
             suggestions.value.insert(suggestions.value.remove(at: index), at: 0)
             return
         }
 
-        if suggestions.value.count == 10 {
-            // If it's full, discard the oldest
+        // Is it already full?
+        if suggestions.value.count == StoreClient.maximumCapacity {
+            // Discard the oldest
             suggestions.value.removeLast()
         }
 
+        // Insert at the head
         suggestions.value.insert(suggestion, at: 0)
     }
 }
