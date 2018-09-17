@@ -12,6 +12,11 @@ enum AppManagerError: Error {
     case initialization(Error)
 }
 
+/// The `AppManager` is in charge of the creation of the main components necessary for the app to work:
+/// - `apiClient`: for backend integration
+/// - `storeClient`: local storage for the suggestions
+/// - `presenterManager`: component in charge of presenting the views
+/// - `routingManager`: component in charge of making the routing decisions
 class AppManager {
 
     let apiClient: ApiClientProtocol
