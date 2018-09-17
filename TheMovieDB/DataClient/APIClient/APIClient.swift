@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class APIClient {
+final class ApiClient {
     private let movieHttpLayer: HttpLayerProtocol
     private let imageHttpLayer: HttpLayerProtocol
     private let decoder: DecoderProtocol
@@ -19,14 +19,14 @@ final class APIClient {
     }
 }
 
-enum APIError: Error {
+enum ApiError: Error {
     case badRequest(NSError)
     case dataBadFormatted
     case dataMissing
 }
 
 protocol SearchProtocol {
-    func search(movie name: String, page: Int, completion: @escaping (Result<SearchResult<Movie>, APIError>) -> Void)
+    func search(movie name: String, page: Int, completion: @escaping (Result<SearchResult<Movie>, ApiError>) -> Void)
 }
 
 protocol ImageProtocol {
@@ -34,10 +34,10 @@ protocol ImageProtocol {
 }
 
 protocol ApiClientProtocol: ImageProtocol & SearchProtocol { }
-extension APIClient: ApiClientProtocol { }
+extension ApiClient: ApiClientProtocol { }
 
-extension APIClient: SearchProtocol {
-    func search(movie name: String, page: Int = 1, completion: @escaping (Result<SearchResult<Movie>, APIError>) -> Void) {
+extension ApiClient: SearchProtocol {
+    func search(movie name: String, page: Int = 1, completion: @escaping (Result<SearchResult<Movie>, ApiError>) -> Void) {
         // TODO: Has to be greater than 0. Handle specific error.
         self.movieHttpLayer.request(at: .search(name, page)) { [weak self] result in
             guard let `self` = self else { return }
@@ -59,7 +59,7 @@ extension APIClient: SearchProtocol {
     }
 }
 
-extension APIClient: ImageProtocol {
+extension ApiClient: ImageProtocol {
     func movieImageURL(movie posterPath: String, posterSize size: Poster​Size) -> URL? {
         return self.imageHttpLayer.buildUrl(endpoint: Endpoint.image(posterPath, size))
     }

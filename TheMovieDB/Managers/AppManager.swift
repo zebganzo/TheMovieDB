@@ -44,7 +44,7 @@ extension AppManager {
         let imageHttpLayerBaseUrl = "http://image.tmdb.org"
 
         do {
-            return APIClient(movieHttpLayer: try MovieHttpLayer(apiKey: apiKey, baseUrl: movieHttpLayerBaseURL, version: version),
+            return ApiClient(movieHttpLayer: try MovieHttpLayer(apiKey: apiKey, baseUrl: movieHttpLayerBaseURL, version: version),
                              imageHttpLayer: try ImageHttpLayer(baseUrl: imageHttpLayerBaseUrl),
                              decoder: DecoderBuilder.decoder)
         } catch let error {
