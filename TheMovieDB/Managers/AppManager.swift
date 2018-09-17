@@ -39,6 +39,8 @@ class AppManager {
 }
 
 extension AppManager {
+
+    /// If necessary, build an instance of that conforms to the `ApiClientProtocol`.
     private static func buildApiClient(apiClient: ApiClientProtocol? = nil) throws -> ApiClientProtocol {
         if let apiClient = apiClient {
             return apiClient
@@ -58,6 +60,7 @@ extension AppManager {
         }
     }
 
+    /// If necessary, build an instance of that conforms to the `SuggestionsProtocol`.
     private static func buildStoreClient(storeClient: SuggestionsProtocol? = nil) -> SuggestionsProtocol {
         if let storeClient = storeClient {
             return storeClient
@@ -65,6 +68,7 @@ extension AppManager {
         return StoreClient(store: ExtremelyAdvancedStorageSystem.standard)
     }
 
+    /// If necessary, build an instance of that conforms to the `PresenterManagerProtocol`.
     private static func buildPresenterManager(presenterManager: PresenterManagerProtocol? = nil, routingManager: RoutingManagerProtocol) -> PresenterManagerProtocol {
         if let presenterManager = presenterManager {
             return presenterManager
@@ -72,6 +76,8 @@ extension AppManager {
         return PresenterManager(routingManager: routingManager)
     }
 
+    /// If necessary, build an instance of that conforms to the `RoutingManagerProtocol`.
+    /// The `RoutingManager` needs the clients for its initialisation.
     private static func buildRoutingManager(routingManager: RoutingManagerProtocol? = nil,
                                             searchClient: SearchProtocol,
                                             suggestionsClient: SuggestionsProtocol,

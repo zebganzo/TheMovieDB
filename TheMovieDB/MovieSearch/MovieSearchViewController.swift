@@ -34,6 +34,8 @@ class MovieSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         self.viewModel.searchAction <~ self.movieSearchView.headerView.searchTextSignal
+
+        // Observe "suggestions values" and update the local variable.
         self.viewModel.suggestions
             .producer
             .observe(on: UIScheduler())
@@ -41,6 +43,8 @@ class MovieSearchViewController: UIViewController {
                 self?.suggestions = suggestions
         }
 
+        // Observe the values (search result + query) of the `searchAction`
+        // and trigger the presenter manager with this value and the current view model.
         self.viewModel.searchAction.values
             .observeValues { [weak self] searchResultAndQuery in
                 guard let `self` = self else { return }
@@ -48,6 +52,7 @@ class MovieSearchViewController: UIViewController {
                 self.presenterManager.perform(action: .push(routingEvent))
         }
 
+        // Obserse the errors (SearchError) of the `searchAction`.
         _ = self.viewModel.searchAction.errors
             .observeValues { searchError in
                 var message: String
@@ -108,6 +113,8 @@ extension MovieSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
         let suggestion = self.viewModel.suggestions.value[indexPath.row]
+
+        // When a suggestion is selected, it triggers the `searchAction`.
         self.viewModel.searchAction.apply(suggestion).start()
     }
 }

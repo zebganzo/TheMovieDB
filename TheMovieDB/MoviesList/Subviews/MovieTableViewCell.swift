@@ -14,7 +14,7 @@ class MovieTableViewCell: UITableViewCell {
     static let defaultCellIdentifier = "MovieTableViewCell"
     static let defaultNibName = "MovieTableViewCell"
 
-    var movieBasicInfo: MovieBasicInfoProtocol? {
+    var movieBasicInfo: MovieInfoProtocol? {
         willSet {
             if newValue == nil {
                 self.resetUI()
@@ -104,10 +104,10 @@ extension MovieTableViewCell {
         self.overviewLabel.text = nil
     }
 
-    private func populateUI(movieBasicInfo: MovieBasicInfoProtocol) {
+    private func populateUI(movieBasicInfo: MovieInfoProtocol) {
         self.posterImageView.sd_setImage(with: movieBasicInfo.posterURL, completed: nil)
         self.nameLabel.text = movieBasicInfo.title
-        self.releaseLabel.text = movieBasicInfo.releaseData
+        self.releaseLabel.text = movieBasicInfo.releaseDate
         self.overviewLabel.text = movieBasicInfo.overview
     }
 }

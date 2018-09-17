@@ -9,8 +9,16 @@
 import ReactiveSwift
 import Result
 
+/// It provides two variables for searching movies and suggestions.
 protocol MovieSearchProtocol: RouterViewModelProtocol {
+
+    /// This `Action` performs the research of the movies with the given query.
+    /// Input: query name (`String`)
+    /// Output: `Tuple` with the query performed (`String`) and the result of the search `SearchResult<Movie>`
+    /// Error: specific `SearchError`.
     var searchAction: Action<String, (String, SearchResult<Movie>), SearchError> { get }
+
+    /// `MutableProperty` that contains an array of `Suggestion`.
     var suggestions: MutableProperty<[Suggestion]> { get }
 }
 
@@ -35,6 +43,7 @@ class MovieSearchViewModel: MovieSearchProtocol {
                     switch result {
                     case .success(let searchResult):
 
+                        // In case of no movies found, it sends the corresponding error.
                         if searchResult.results.isEmpty {
                             observer.send(error: .noMoviesFound)
                             return
@@ -50,6 +59,7 @@ class MovieSearchViewModel: MovieSearchProtocol {
                     }
                 }
                 }.on(value: { _ in
+                    // As side-effect of the research, it saves the query name.
                     suggestionsProtocol.save(suggestion: name)
                 })
         }
