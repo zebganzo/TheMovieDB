@@ -40,7 +40,9 @@ extension HttpLayerProtocol {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
 
             // https://www.themoviedb.org/documentation/api/status-codes
-            let statuCode = response?.statusCode()
+            if let statuCode = response?.statusCode() {
+                print("[Networking] Response statut code: \(statuCode)")
+            }
 
             if let data = data {
                 completion(.success(data))
